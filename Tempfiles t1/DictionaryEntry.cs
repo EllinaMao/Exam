@@ -9,7 +9,7 @@ namespace Tempfiles_t1
     public class DictionaryEntry
     {
 
-        public string Word { get; set; }
+        public string Word { get; set; } = "";
         public List<string> Translations { get; set; } = new();
 
     }
