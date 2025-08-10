@@ -14,22 +14,22 @@ namespace Tempfiles_t1
         }
         public static void ReplaceWord(this LanguageDictionary dict, string oldWord, string newWord)
         {
-            var change = dict.Entries.FirstOrDefault(e => e.Word == oldWord);
-            if (change != null) { change.Word = newWord; }
+            var entry = dict.Entries.FirstOrDefault(e => e.Word == oldWord);
+            if (entry != null) { entry.Word = newWord; }
         }
 
         public static void ReplaceTranslation(this LanguageDictionary dict, string word, string oldTrans, string newTrans)
         {
-            var change = dict.Entries.FirstOrDefault(c => c.Word == oldTrans);
-            if (change == null) {
+            var entry = dict.Entries.FirstOrDefault(e => e.Word == oldTrans);
+            if (entry == null) {
                 throw new ArgumentException("This word not in list");
             }
-            int index = change.Translations.IndexOf(oldTrans);
-            if (index <= -1|| index > change.Translations.Count)
+            int index = entry.Translations.IndexOf(oldTrans);
+            if (index <= -1|| index > entry.Translations.Count)
             {
                 throw new ArgumentException("index out of range");
             }
-            change.Translations[index] = newTrans;
+            entry.Translations[index] = newTrans;
         }
         public static void DeleteWord(this LanguageDictionary dictionary, string word)
         {

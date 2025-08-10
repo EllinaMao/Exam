@@ -8,7 +8,12 @@ namespace Tempfiles_t1
 {
     public class LanguageDictionary
     {
-        public string Name { get; set; } // Например: "Англо-Русский"
-        public List<DictionaryEntry> Entries { get; set; } = new();
+        public required string Name { get; set; } // English-Russian, German -English, etc.
+        public List<DictionaryEntry> Entries { get; set; } = new();// List of dictionary entries
+
+        public LanguageDictionary(string name)
+        {
+            Name = name;
+        }
     }
 }
