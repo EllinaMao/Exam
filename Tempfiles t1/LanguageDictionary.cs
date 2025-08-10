@@ -11,7 +11,7 @@ namespace ProjectLogic
     {
         public string Name { get; set; } // English-Russian, German -English, etc.
         [JsonPropertyName("Слова")]
-        public Dictionary<string, DictionaryEntry> Words { get; set; } = new Dictionary<string, DictionaryEntry>();
+        public Dictionary<string, DictionaryEntry> Words { get; set; } 
         public LanguageDictionary(string name)
         {
             Name = name;
