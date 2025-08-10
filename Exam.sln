@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36310.24 d17.14
+VisualStudioVersion = 17.14.36310.24
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exam", "Exam\Exam.csproj", "{8BF8C1AD-54ED-4123-B638-4BF238D4C195}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task 1 Dictionary", "Task 1 Dictionary\Task 1 Dictionary.csproj", "{6A7E0647-D7DC-49DD-899B-E9B2911DF574}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tempfiles t1", "Tempfiles t1\Tempfiles t1.csproj", "{D8338AA4-DCF6-4DF4-8757-280D67778C31}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectLogic", "Tempfiles t1\ProjectLogic.csproj", "{D8338AA4-DCF6-4DF4-8757-280D67778C31}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

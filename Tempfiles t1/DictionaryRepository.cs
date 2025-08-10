@@ -5,16 +5,16 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace Tempfiles_t1
+namespace ProjectLogic
 {
     public class DictionaryRepository//список словарей
     {
         [JsonPropertyName("Словари")]
-        List<LanguageDictionary> dictionaries = new List<LanguageDictionary>();
+        public List<LanguageDictionary> dictionaries { get; set; } = new List<LanguageDictionary>();
 
         public void AddDictionary(LanguageDictionary dict)
         {
-
+            dictionaries.Add(dict);
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace Tempfiles_t1
+namespace ProjectLogic
 {
 
     public static class DictionaryStorage
@@ -17,7 +17,7 @@ namespace Tempfiles_t1
             string json = JsonSerializer.Serialize(dict, new JsonSerializerOptions
             {
                 WriteIndented = true,
-                Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+                //Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
             });
             File.WriteAllText(filePath, json);
         }
@@ -42,6 +42,8 @@ namespace Tempfiles_t1
             string json = JsonSerializer.Serialize(entry, new JsonSerializerOptions
             {
                 WriteIndented = true,
+                //Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+
             });
             File.WriteAllText(filePath, json);
         }

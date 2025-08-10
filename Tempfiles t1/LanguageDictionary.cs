@@ -5,17 +5,22 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace Tempfiles_t1
+namespace ProjectLogic
 {
     public class LanguageDictionary//тут хранятся сами словари
     {
-        public required string Name { get; set; } // English-Russian, German -English, etc.
+        public string Name { get; set; } // English-Russian, German -English, etc.
         [JsonPropertyName("Слова")]
-        public required Dictionary<string, DictionaryEntry> Words { get; set; } = new Dictionary<string, DictionaryEntry>();
+        public Dictionary<string, DictionaryEntry> Words { get; set; } = new Dictionary<string, DictionaryEntry>();
         public LanguageDictionary(string name)
         {
             Name = name;
             Words = new Dictionary<string, DictionaryEntry>();
+        }
+
+        public void AddWord(string word, List<string> translations)
+        {
+            Words[word] = new DictionaryEntry { Translations = translations };
         }
     }
 }

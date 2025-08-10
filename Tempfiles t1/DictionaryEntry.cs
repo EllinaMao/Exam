@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Transactions;
 
-namespace Tempfiles_t1
+namespace ProjectLogic
 {
     public class DictionaryEntry
     {
@@ -16,3 +16,4 @@ namespace Tempfiles_t1
 
     }
 }
+ 
