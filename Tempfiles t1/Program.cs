@@ -107,7 +107,7 @@ namespace ProjectLogic
                 ("juice", new List<string> { "сок" }),
                 ("cake", new List<string> { "торт" }),
                 ("cookie", new List<string> { "печенье" }),
-                ("ice cream", new List<string> { "мороженое" }),
+                ("ice cream", new List<string> { "мороженое" }),->
                 ("honey", new List<string> { "мёд" }),
                 ("jam", new List<string> { "варенье" }),
                 ("salt", new List<string> { "соль" }),
