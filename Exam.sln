@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task 1 Dictionary", "Task 1
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectLogic", "Tempfiles t1\ProjectLogic.csproj", "{D8338AA4-DCF6-4DF4-8757-280D67778C31}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Task 1 DictionaryFiles", "Task 1 DictionaryFiles", "{36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,6 +32,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6A7E0647-D7DC-49DD-899B-E9B2911DF574} = {36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}
+		{D8338AA4-DCF6-4DF4-8757-280D67778C31} = {36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {96C519E5-06FB-452E-A243-D44181F0115B}

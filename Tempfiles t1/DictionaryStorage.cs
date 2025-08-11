@@ -7,25 +7,25 @@ namespace ProjectLogic
     public static class DictionaryStorage
     {
         // *  ■ Словари должны храниться в файлах.
-        public static void Save(this LanguageDictionary dict , string filePath)
+        public static void Save(this LanguageDictionary dict , string fileName, string filePath = "Savefiles")
         {
-            var Filepath = Path.Combine("Savefiles", filePath);
+            var fileFullPath = Path.Combine(filePath , fileName);
             string json = JsonSerializer.Serialize(dict, new JsonSerializerOptions
             {
                 WriteIndented = true,
                 Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
             }); 
-            var directory = Path.GetDirectoryName(Filepath);
+            var directory = Path.GetDirectoryName(fileFullPath);
             if (!Directory.Exists(directory))
             {
                 Directory.CreateDirectory(directory!);
             }
-            File.WriteAllText(Filepath, json);
+            File.WriteAllText(fileFullPath, json);
         }
 
-        public static LanguageDictionary Load(string filePath)
+        public static LanguageDictionary Load(string fileName, string filePath = "Savefiles")
         {
-            string fullPath = Path.Combine("Savefiles", filePath);
+            string fullPath = Path.Combine(filePath, fileName);
             if (!File.Exists(fullPath))
             {
                 throw new FileNotFoundException($"File not found: ");
@@ -40,9 +40,9 @@ namespace ProjectLogic
             return result;
         }
  //  ■ Слово и варианты его переводов можно экспортировать в отдельный файл результата.
-        public static void ExportWordToFile(LanguageDictionary dict, string word, string filePath)
+        public static void ExportWordToFile(LanguageDictionary dict, string word, string fileName, string filePath = "Translations")
         {
-            var FilePath = Path.Combine("Translations", filePath);
+            var FilePath = Path.Combine(filePath, fileName);
             var entry = dict.Words.TryGetValue(word, out DictionaryEntry? value) ? value : null;
             if (entry == null)
             {

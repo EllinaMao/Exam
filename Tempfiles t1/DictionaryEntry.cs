@@ -12,8 +12,7 @@ namespace ProjectLogic
     {
         // список с переводами слова.
         [JsonPropertyName("Перевод")]
-        public List<string> Translations { get; set; } = new();
-
+        public List<string> Translations { get; set; } = new List<string>();
     }
 }
  
