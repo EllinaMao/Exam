@@ -14,6 +14,15 @@ namespace Task_1_Dictionary
             dictionariesFolder = Path.Combine(Application.StartupPath , "Savefiles");
             listBoxWords.SelectedIndexChanged += listBoxWords_SelectedIndexChanged;
 
+
+            // добавляем слежение за выбором перевода
+            listBoxTranslations.SelectedIndexChanged += listBoxTranslations_SelectedIndexChanged;
+
+            // Если кнопки созданы в дизайнере — убедись что их видимость изначально false
+            // (имена кнопок такие, как у тебя в коде: addNew, ChangeSelected, deleteSelected, saveToFile)
+            panelButtons.Visible = false;
+            saveToFile.Visible = false;
+
             // Создать папку, если её нет
             if (!Directory.Exists(dictionariesFolder))
                 Directory.CreateDirectory(dictionariesFolder);

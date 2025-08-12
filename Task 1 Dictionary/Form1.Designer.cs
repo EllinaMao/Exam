@@ -36,7 +36,11 @@
             splitContainer2 = new SplitContainer();
             listBoxWords = new ListBox();
             listBoxTranslations = new ListBox();
-            tableLayoutPanel1 = new TableLayoutPanel();
+            panelButtons = new TableLayoutPanel();
+            addNew = new Button();
+            change = new Button();
+            remove = new Button();
+            saveToFile = new Button();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
@@ -46,6 +50,7 @@
             splitContainer2.Panel1.SuspendLayout();
             splitContainer2.Panel2.SuspendLayout();
             splitContainer2.SuspendLayout();
+            panelButtons.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
@@ -68,14 +73,14 @@
             // openFileToolStripMenuItem
             // 
             openFileToolStripMenuItem.Name = "openFileToolStripMenuItem";
-            openFileToolStripMenuItem.Size = new Size(224 , 26);
+            openFileToolStripMenuItem.Size = new Size(153 , 26);
             openFileToolStripMenuItem.Text = "Open file";
             openFileToolStripMenuItem.Click += openFileToolStripMenuItem_Click;
             // 
             // saveFileToolStripMenuItem
             // 
             saveFileToolStripMenuItem.Name = "saveFileToolStripMenuItem";
-            saveFileToolStripMenuItem.Size = new Size(224 , 26);
+            saveFileToolStripMenuItem.Size = new Size(153 , 26);
             saveFileToolStripMenuItem.Text = "Save File";
             saveFileToolStripMenuItem.Click += saveFileToolStripMenuItem_Click;
             // 
@@ -91,7 +96,7 @@
             // 
             // splitContainer1.Panel2
             // 
-            splitContainer1.Panel2.Controls.Add(tableLayoutPanel1);
+            splitContainer1.Panel2.Controls.Add(panelButtons);
             splitContainer1.Size = new Size(914 , 572);
             splitContainer1.SplitterDistance = 751;
             splitContainer1.TabIndex = 3;
@@ -133,23 +138,68 @@
             listBoxTranslations.Size = new Size(562 , 572);
             listBoxTranslations.TabIndex = 7;
             // 
-            // tableLayoutPanel1
+            // panelButtons
             // 
-            tableLayoutPanel1.ColumnCount = 1;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent , 50F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent , 50F));
-            tableLayoutPanel1.Dock = DockStyle.Fill;
-            tableLayoutPanel1.Location = new Point(0 , 0);
-            tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 4;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent , 46.0606079F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent , 53.9393921F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute , 132F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute , 121F));
-            tableLayoutPanel1.Size = new Size(159 , 572);
-            tableLayoutPanel1.TabIndex = 9;
-            tableLayoutPanel1.Visible = false;
-            tableLayoutPanel1.Paint += tableLayoutPanel1_Paint;
+            panelButtons.ColumnCount = 1;
+            panelButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent , 50F));
+            panelButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent , 50F));
+            panelButtons.Controls.Add(addNew , 0 , 0);
+            panelButtons.Controls.Add(change , 0 , 1);
+            panelButtons.Controls.Add(remove , 0 , 2);
+            panelButtons.Controls.Add(saveToFile , 0 , 3);
+            panelButtons.Dock = DockStyle.Fill;
+            panelButtons.Location = new Point(0 , 0);
+            panelButtons.Name = "panelButtons";
+            panelButtons.RowCount = 4;
+            panelButtons.RowStyles.Add(new RowStyle(SizeType.Percent , 46.0606079F));
+            panelButtons.RowStyles.Add(new RowStyle(SizeType.Percent , 53.9393921F));
+            panelButtons.RowStyles.Add(new RowStyle(SizeType.Absolute , 132F));
+            panelButtons.RowStyles.Add(new RowStyle(SizeType.Absolute , 121F));
+            panelButtons.Size = new Size(159 , 572);
+            panelButtons.TabIndex = 9;
+            panelButtons.Visible = false;
+            panelButtons.Paint += tableLayoutPanel1_Paint;
+            // 
+            // addNew
+            // 
+            addNew.Dock = DockStyle.Fill;
+            addNew.Location = new Point(3 , 3);
+            addNew.Name = "addNew";
+            addNew.Size = new Size(153 , 140);
+            addNew.TabIndex = 0;
+            addNew.Text = "Add";
+            addNew.UseVisualStyleBackColor = true;
+            // 
+            // change
+            // 
+            change.Dock = DockStyle.Fill;
+            change.Location = new Point(3 , 149);
+            change.Name = "change";
+            change.Size = new Size(153 , 166);
+            change.TabIndex = 1;
+            change.Text = "Change";
+            change.UseVisualStyleBackColor = true;
+            // 
+            // remove
+            // 
+            remove.Dock = DockStyle.Fill;
+            remove.Location = new Point(3 , 321);
+            remove.Name = "remove";
+            remove.Size = new Size(153 , 126);
+            remove.TabIndex = 2;
+            remove.Text = "Remove";
+            remove.UseVisualStyleBackColor = true;
+            // 
+            // saveToFile
+            // 
+            saveToFile.Dock = DockStyle.Fill;
+            saveToFile.Location = new Point(3 , 453);
+            saveToFile.Name = "saveToFile";
+            saveToFile.Size = new Size(153 , 116);
+            saveToFile.TabIndex = 3;
+            saveToFile.Text = "Save to file";
+            saveToFile.UseVisualStyleBackColor = false;
+            saveToFile.Visible = false;
             // 
             // Form1
             // 
@@ -171,6 +221,7 @@
             splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer2).EndInit();
             splitContainer2.ResumeLayout(false);
+            panelButtons.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -185,6 +236,10 @@
         private SplitContainer splitContainer2;
         private ListBox listBoxWords;
         private ListBox listBoxTranslations;
-        private TableLayoutPanel tableLayoutPanel1;
+        private TableLayoutPanel panelButtons;
+        private Button addNew;
+        private Button change;
+        private Button remove;
+        private Button saveToFile;
     }
 }
