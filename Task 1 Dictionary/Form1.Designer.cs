@@ -32,23 +32,26 @@
             toolStripMenuItem1 = new ToolStripMenuItem();
             openFileToolStripMenuItem = new ToolStripMenuItem();
             saveFileToolStripMenuItem = new ToolStripMenuItem();
-            Eddit = new ToolStripMenuItem();
-            addWordToolStripMenuItem = new ToolStripMenuItem();
-            addNewWordToolStripMenuItem = new ToolStripMenuItem();
-            addTranslationToolStripMenuItem = new ToolStripMenuItem();
-            findWordFToolStripMenuItem = new ToolStripMenuItem();
-            replaceWordToolStripMenuItem = new ToolStripMenuItem();
-            replaceWordToolStripMenuItem1 = new ToolStripMenuItem();
-            replaceTranslationToolStripMenuItem = new ToolStripMenuItem();
+            splitContainer1 = new SplitContainer();
+            splitContainer2 = new SplitContainer();
             listBoxWords = new ListBox();
             listBoxTranslations = new ListBox();
+            tableLayoutPanel1 = new TableLayoutPanel();
             menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
+            splitContainer1.Panel1.SuspendLayout();
+            splitContainer1.Panel2.SuspendLayout();
+            splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer2).BeginInit();
+            splitContainer2.Panel1.SuspendLayout();
+            splitContainer2.Panel2.SuspendLayout();
+            splitContainer2.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(20 , 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { toolStripMenuItem1 , Eddit });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { toolStripMenuItem1 });
             menuStrip1.Location = new Point(0 , 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(914 , 28);
@@ -65,107 +68,109 @@
             // openFileToolStripMenuItem
             // 
             openFileToolStripMenuItem.Name = "openFileToolStripMenuItem";
-            openFileToolStripMenuItem.Size = new Size(153 , 26);
+            openFileToolStripMenuItem.Size = new Size(224 , 26);
             openFileToolStripMenuItem.Text = "Open file";
             openFileToolStripMenuItem.Click += openFileToolStripMenuItem_Click;
             // 
             // saveFileToolStripMenuItem
             // 
             saveFileToolStripMenuItem.Name = "saveFileToolStripMenuItem";
-            saveFileToolStripMenuItem.Size = new Size(153 , 26);
+            saveFileToolStripMenuItem.Size = new Size(224 , 26);
             saveFileToolStripMenuItem.Text = "Save File";
             saveFileToolStripMenuItem.Click += saveFileToolStripMenuItem_Click;
             // 
-            // Eddit
+            // splitContainer1
             // 
-            Eddit.DropDownItems.AddRange(new ToolStripItem[] { addWordToolStripMenuItem , findWordFToolStripMenuItem , replaceWordToolStripMenuItem });
-            Eddit.Name = "Eddit";
-            Eddit.Size = new Size(58 , 24);
-            Eddit.Text = "Eddit";
-            Eddit.Click += toolStripMenuItem2_Click;
+            splitContainer1.Dock = DockStyle.Fill;
+            splitContainer1.Location = new Point(0 , 28);
+            splitContainer1.Name = "splitContainer1";
             // 
-            // addWordToolStripMenuItem
+            // splitContainer1.Panel1
             // 
-            addWordToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { addNewWordToolStripMenuItem , addTranslationToolStripMenuItem });
-            addWordToolStripMenuItem.Name = "addWordToolStripMenuItem";
-            addWordToolStripMenuItem.Size = new Size(224 , 26);
-            addWordToolStripMenuItem.Text = "AddWord";
+            splitContainer1.Panel1.Controls.Add(splitContainer2);
             // 
-            // addNewWordToolStripMenuItem
+            // splitContainer1.Panel2
             // 
-            addNewWordToolStripMenuItem.Name = "addNewWordToolStripMenuItem";
-            addNewWordToolStripMenuItem.Size = new Size(224 , 26);
-            addNewWordToolStripMenuItem.Text = "Add new word";
-            addNewWordToolStripMenuItem.Click += addNewWordToolStripMenuItem_Click;
+            splitContainer1.Panel2.Controls.Add(tableLayoutPanel1);
+            splitContainer1.Size = new Size(914 , 572);
+            splitContainer1.SplitterDistance = 751;
+            splitContainer1.TabIndex = 3;
             // 
-            // addTranslationToolStripMenuItem
+            // splitContainer2
             // 
-            addTranslationToolStripMenuItem.Name = "addTranslationToolStripMenuItem";
-            addTranslationToolStripMenuItem.Size = new Size(224 , 26);
-            addTranslationToolStripMenuItem.Text = "Add translation";
-            addTranslationToolStripMenuItem.Click += addTranslationToolStripMenuItem_Click;
+            splitContainer2.Dock = DockStyle.Fill;
+            splitContainer2.Location = new Point(0 , 0);
+            splitContainer2.Name = "splitContainer2";
             // 
-            // findWordFToolStripMenuItem
+            // splitContainer2.Panel1
             // 
-            findWordFToolStripMenuItem.Name = "findWordFToolStripMenuItem";
-            findWordFToolStripMenuItem.Size = new Size(224 , 26);
-            findWordFToolStripMenuItem.Text = "Find Word";
-            findWordFToolStripMenuItem.Click += findWordFToolStripMenuItem_Click;
+            splitContainer2.Panel1.Controls.Add(listBoxWords);
             // 
-            // replaceWordToolStripMenuItem
+            // splitContainer2.Panel2
             // 
-            replaceWordToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { replaceWordToolStripMenuItem1 , replaceTranslationToolStripMenuItem });
-            replaceWordToolStripMenuItem.Name = "replaceWordToolStripMenuItem";
-            replaceWordToolStripMenuItem.Size = new Size(224 , 26);
-            replaceWordToolStripMenuItem.Text = "Replace Word";
-            // 
-            // replaceWordToolStripMenuItem1
-            // 
-            replaceWordToolStripMenuItem1.Name = "replaceWordToolStripMenuItem1";
-            replaceWordToolStripMenuItem1.Size = new Size(219 , 26);
-            replaceWordToolStripMenuItem1.Text = "Replace word";
-            replaceWordToolStripMenuItem1.Click += replaceWordToolStripMenuItem1_Click;
-            // 
-            // replaceTranslationToolStripMenuItem
-            // 
-            replaceTranslationToolStripMenuItem.Name = "replaceTranslationToolStripMenuItem";
-            replaceTranslationToolStripMenuItem.Size = new Size(219 , 26);
-            replaceTranslationToolStripMenuItem.Text = "Replace translation";
+            splitContainer2.Panel2.Controls.Add(listBoxTranslations);
+            splitContainer2.Size = new Size(751 , 572);
+            splitContainer2.SplitterDistance = 185;
+            splitContainer2.TabIndex = 8;
             // 
             // listBoxWords
             // 
             listBoxWords.BorderStyle = BorderStyle.None;
-            listBoxWords.Dock = DockStyle.Left;
+            listBoxWords.Dock = DockStyle.Fill;
             listBoxWords.FormattingEnabled = true;
-            listBoxWords.Location = new Point(0 , 28);
+            listBoxWords.Location = new Point(0 , 0);
             listBoxWords.Name = "listBoxWords";
-            listBoxWords.Size = new Size(189 , 572);
-            listBoxWords.TabIndex = 1;
+            listBoxWords.Size = new Size(185 , 572);
+            listBoxWords.TabIndex = 5;
             // 
             // listBoxTranslations
             // 
             listBoxTranslations.BorderStyle = BorderStyle.None;
-            listBoxTranslations.Dock = DockStyle.Left;
+            listBoxTranslations.Dock = DockStyle.Fill;
             listBoxTranslations.FormattingEnabled = true;
-            listBoxTranslations.Location = new Point(189 , 28);
+            listBoxTranslations.Location = new Point(0 , 0);
             listBoxTranslations.Name = "listBoxTranslations";
-            listBoxTranslations.Size = new Size(719 , 572);
-            listBoxTranslations.TabIndex = 2;
-            listBoxTranslations.SelectedIndexChanged += listBoxTranslations_SelectedIndexChanged;
+            listBoxTranslations.Size = new Size(562 , 572);
+            listBoxTranslations.TabIndex = 7;
+            // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.ColumnCount = 1;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent , 50F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent , 50F));
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+            tableLayoutPanel1.Location = new Point(0 , 0);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 4;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent , 46.0606079F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent , 53.9393921F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute , 132F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute , 121F));
+            tableLayoutPanel1.Size = new Size(159 , 572);
+            tableLayoutPanel1.TabIndex = 9;
+            tableLayoutPanel1.Visible = false;
+            tableLayoutPanel1.Paint += tableLayoutPanel1_Paint;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F , 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(914 , 600);
-            Controls.Add(listBoxTranslations);
-            Controls.Add(listBoxWords);
+            Controls.Add(splitContainer1);
             Controls.Add(menuStrip1);
             Margin = new Padding(3 , 4 , 3 , 4);
             Name = "Form1";
             Text = "Form1";
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
+            splitContainer1.Panel1.ResumeLayout(false);
+            splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
+            splitContainer1.ResumeLayout(false);
+            splitContainer2.Panel1.ResumeLayout(false);
+            splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer2).EndInit();
+            splitContainer2.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -176,15 +181,10 @@
         private ToolStripMenuItem toolStripMenuItem1;
         private ToolStripMenuItem openFileToolStripMenuItem;
         private ToolStripMenuItem saveFileToolStripMenuItem;
+        private SplitContainer splitContainer1;
+        private SplitContainer splitContainer2;
         private ListBox listBoxWords;
         private ListBox listBoxTranslations;
-        private ToolStripMenuItem Eddit;
-        private ToolStripMenuItem addWordToolStripMenuItem;
-        private ToolStripMenuItem findWordFToolStripMenuItem;
-        private ToolStripMenuItem replaceWordToolStripMenuItem;
-        private ToolStripMenuItem replaceWordToolStripMenuItem1;
-        private ToolStripMenuItem replaceTranslationToolStripMenuItem;
-        private ToolStripMenuItem addNewWordToolStripMenuItem;
-        private ToolStripMenuItem addTranslationToolStripMenuItem;
+        private TableLayoutPanel tableLayoutPanel1;
     }
 }

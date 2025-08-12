@@ -125,62 +125,69 @@ namespace Task_1_Dictionary
             }
         }
 
-        private void findWordFToolStripMenuItem_Click(object sender , EventArgs e)
-        {
 
-        }
-
-        private void toolStripMenuItem2_Click(object sender , EventArgs e)
-        {
-
-
-        }
-
-        private void replaceWordToolStripMenuItem1_Click(object sender , EventArgs e)
-        {
-
-        }
-
-        private void addNewWordToolStripMenuItem_Click(object sender , EventArgs e)
-        {
-
-        }
 
         private void addTranslationToolStripMenuItem_Click(object sender , EventArgs e)
         {
-            if (currentDictionary == null)
-            {
-                MessageBox.Show("Словарь не загружен.");
-                return;
-            }
+            //if (currentDictionary == null)
+            //{
+            //    MessageBox.Show("Словарь не загружен.");
+            //    return;
+            //}
 
-            if (!(listBoxWords.SelectedItem is string selectedWord))
-            {
-                MessageBox.Show("Пожалуйста, выберите слово из списка.");
-                return;
-            }
+            //if (!(listBoxWords.SelectedItem is string selectedWord))
+            //{
+            //    MessageBox.Show("Пожалуйста, выберите слово из списка.");
+            //    return;
+            //}
 
-            string newTranslation = textBoxNewTranslation.Text.Trim();
-            if (string.IsNullOrEmpty(newTranslation))
-            {
-                MessageBox.Show("Введите перевод.");
-                return;
-            }
+            //string newTranslation = textBoxNewTranslation.Text.Trim();
+            //if (string.IsNullOrEmpty(newTranslation))
+            //{
+            //    MessageBox.Show("Введите перевод.");
+            //    return;
+            //}
 
-            try
-            {
-                currentDictionary.AddTranslation(selectedWord , newTranslation);
-                // Обновляем список переводов
-                listBoxTranslations.Items.Clear();
-                listBoxTranslations.Items.AddRange(currentDictionary.GetTranslations(selectedWord).ToArray());
+            //try
+            //{
+            //    currentDictionary.AddTranslation(selectedWord , newTranslation);
+            //    // Обновляем список переводов
+            //    listBoxTranslations.Items.Clear();
+            //    listBoxTranslations.Items.AddRange(currentDictionary.GetTranslations(selectedWord).ToArray());
 
-                textBoxNewTranslation.Clear();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ошибка: " + ex.Message);
-            }
+            //    textBoxNewTranslation.Clear();
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("Ошибка: " + ex.Message);
+            //}
+        }
+
+
+        private void addNew_Click(object sender , EventArgs e)
+        {
+            MessageBox.Show("Функция добавления нового слова пока не реализована.");
+        }
+
+        private void ChangeSelected_Click(object sender , EventArgs e)
+        {
+            MessageBox.Show("Функция изменения выбранного слова пока не реализована.");
+        }
+
+        private void deleteSelected_Click(object sender , EventArgs e)
+        {
+            MessageBox.Show("Функция удаления выбранного слова пока не реализована.");
+        }
+
+        private void saveToFile_Click(object sender , EventArgs e)
+        {
+            MessageBox.Show("Функция сохранения слова в файл пока не реализована.");
+        }
+
+        private void tableLayoutPanel1_Paint(object sender , PaintEventArgs e)
+        {
+
         }
     }
-    
+
 }
