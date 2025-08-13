@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace ProjectLogic
 {
@@ -7,7 +8,6 @@ namespace ProjectLogic
     {
         static void Main(string[] args)
         {
-            var repository = new DictionaryRepository();
             var engRusDict = new LanguageDictionary("Англо-русский");
 
             // Массив пар: английское слово и список переводов
@@ -140,13 +140,14 @@ namespace ProjectLogic
                 }
             }
 
-            repository.AddDictionary(engRusDict);
-            repository.AddDictionary(rusEngDict);
 
-            string filePath = "dictionaries.json";
-            DictionaryStorage.Save(repository, filePath);
+            string filePath = "russ-eng.json";
+            string filePath2 = "eng-russ.json";
+            DictionaryStorage.Save(rusEngDict, filePath);
+            DictionaryStorage.Save(engRusDict, filePath2);
 
-            Console.WriteLine($"Словари (англо-русский и русско-английский) успешно сохранены в файл: {filePath}");
+
+
         }
     }
 }

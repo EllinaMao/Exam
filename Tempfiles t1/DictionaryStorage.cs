@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Encodings.Web;
+﻿using System.Text.Encodings.Web;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace ProjectLogic
 {
@@ -12,40 +7,64 @@ namespace ProjectLogic
     public static class DictionaryStorage
     {
         // *  ■ Словари должны храниться в файлах.
-        public static void Save(this DictionaryRepository dict , string filePath)
+        public static void Save(this LanguageDictionary dict , string fileName, string filePath = "Savefiles")
         {
+            var fileFullPath = Path.Combine(filePath , fileName);
             string json = JsonSerializer.Serialize(dict, new JsonSerializerOptions
             {
                 WriteIndented = true,
-                //Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
-            });
-            File.WriteAllText(filePath, json);
+                Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+            }); 
+            var directory = Path.GetDirectoryName(fileFullPath);
+            if (!Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory!);
+            }
+            File.WriteAllText(fileFullPath, json);
         }
 
-        public static DictionaryRepository Load(string filePath)
+        public static LanguageDictionary Load(string fileName, string filePath = "Savefiles")
         {
-            string json = File.ReadAllText(filePath);
-            var result = JsonSerializer.Deserialize<DictionaryRepository>(json);
-            if (result == null) { 
+            string fullPath = Path.Combine(filePath, fileName);
+            if (!File.Exists(fullPath))
+            {
+                throw new FileNotFoundException($"File not found: ");
+            }
+            string json = File.ReadAllText(fullPath);
+
+            var result = JsonSerializer.Deserialize<LanguageDictionary>(json);
+            if (result == null)
+            {
                 throw new InvalidOperationException("Deserialization returned null.");
             }
             return result;
         }
  //  ■ Слово и варианты его переводов можно экспортировать в отдельный файл результата.
-        public static void ExportWordToFile(LanguageDictionary dict, string word, string filePath)
+        public static void ExportWordToFile(LanguageDictionary dict , string word , string fileName , string filePath = "Translations")
         {
-            var entry = dict.Words.TryGetValue(word, out DictionaryEntry? value) ? value : null;
-            if (entry == null)
+            var fileFullPath = Path.Combine(filePath , fileName);
+            if (!dict.Words.TryGetValue(word , out DictionaryEntry? entry) || entry == null)
             {
                 throw new ArgumentException("Слово не найдено в словаре.");
             }
-            string json = JsonSerializer.Serialize(entry, new JsonSerializerOptions
+            var exportObject = new
             {
-                WriteIndented = true,
-                //Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+                Слово = word ,
+                Переводы = entry.Translations
+            };
 
+            string json = JsonSerializer.Serialize(exportObject , new JsonSerializerOptions
+            {
+                WriteIndented = true ,
+                Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
             });
-            File.WriteAllText(filePath, json);
+
+            var directory = Path.GetDirectoryName(fileFullPath);
+            if (!Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory!);
+            }
+            File.WriteAllText(fileFullPath , json);
         }
     }
 }
