@@ -32,15 +32,16 @@
             toolStripMenuItem1 = new ToolStripMenuItem();
             openFileToolStripMenuItem = new ToolStripMenuItem();
             saveFileToolStripMenuItem = new ToolStripMenuItem();
+            CreateNewFileToolStripMenuItem = new ToolStripMenuItem();
             splitContainer1 = new SplitContainer();
             splitContainer2 = new SplitContainer();
             listBoxWords = new ListBox();
             listBoxTranslations = new ListBox();
             panelButtons = new TableLayoutPanel();
+            saveToFile = new Button();
             addNew = new Button();
             change = new Button();
             remove = new Button();
-            saveToFile = new Button();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
@@ -65,24 +66,34 @@
             // 
             // toolStripMenuItem1
             // 
-            toolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { openFileToolStripMenuItem , saveFileToolStripMenuItem });
+            toolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { openFileToolStripMenuItem , saveFileToolStripMenuItem , CreateNewFileToolStripMenuItem });
             toolStripMenuItem1.Name = "toolStripMenuItem1";
-            toolStripMenuItem1.Size = new Size(52 , 24);
-            toolStripMenuItem1.Text = "Files";
+            toolStripMenuItem1.Size = new Size(70 , 24);
+            toolStripMenuItem1.Text = "Файлы";
             // 
             // openFileToolStripMenuItem
             // 
             openFileToolStripMenuItem.Name = "openFileToolStripMenuItem";
-            openFileToolStripMenuItem.Size = new Size(153 , 26);
-            openFileToolStripMenuItem.Text = "Open file";
+            openFileToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.O;
+            openFileToolStripMenuItem.Size = new Size(289 , 26);
+            openFileToolStripMenuItem.Text = "Открыть файл";
             openFileToolStripMenuItem.Click += openFileToolStripMenuItem_Click;
             // 
             // saveFileToolStripMenuItem
             // 
             saveFileToolStripMenuItem.Name = "saveFileToolStripMenuItem";
-            saveFileToolStripMenuItem.Size = new Size(153 , 26);
-            saveFileToolStripMenuItem.Text = "Save File";
+            saveFileToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.S;
+            saveFileToolStripMenuItem.Size = new Size(289 , 26);
+            saveFileToolStripMenuItem.Text = "Сохранить файл";
             saveFileToolStripMenuItem.Click += saveFileToolStripMenuItem_Click;
+            // 
+            // CreateNewFileToolStripMenuItem
+            // 
+            CreateNewFileToolStripMenuItem.Name = "CreateNewFileToolStripMenuItem";
+            CreateNewFileToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.N;
+            CreateNewFileToolStripMenuItem.Size = new Size(289 , 26);
+            CreateNewFileToolStripMenuItem.Text = "Создать новый файл";
+            CreateNewFileToolStripMenuItem.Click += createNewFileToolStripMenuItem_Click;
             // 
             // splitContainer1
             // 
@@ -143,63 +154,69 @@
             panelButtons.ColumnCount = 1;
             panelButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent , 50F));
             panelButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent , 50F));
+            panelButtons.Controls.Add(saveToFile , 0 , 3);
             panelButtons.Controls.Add(addNew , 0 , 0);
             panelButtons.Controls.Add(change , 0 , 1);
             panelButtons.Controls.Add(remove , 0 , 2);
-            panelButtons.Controls.Add(saveToFile , 0 , 3);
             panelButtons.Dock = DockStyle.Fill;
             panelButtons.Location = new Point(0 , 0);
             panelButtons.Name = "panelButtons";
             panelButtons.RowCount = 4;
-            panelButtons.RowStyles.Add(new RowStyle(SizeType.Percent , 46.0606079F));
-            panelButtons.RowStyles.Add(new RowStyle(SizeType.Percent , 53.9393921F));
-            panelButtons.RowStyles.Add(new RowStyle(SizeType.Absolute , 132F));
-            panelButtons.RowStyles.Add(new RowStyle(SizeType.Absolute , 121F));
+            panelButtons.RowStyles.Add(new RowStyle(SizeType.Percent , 30.9927368F));
+            panelButtons.RowStyles.Add(new RowStyle(SizeType.Percent , 33.0561333F));
+            panelButtons.RowStyles.Add(new RowStyle(SizeType.Percent , 35.9667358F));
+            panelButtons.RowStyles.Add(new RowStyle(SizeType.Absolute , 125F));
             panelButtons.Size = new Size(159 , 572);
             panelButtons.TabIndex = 9;
             panelButtons.Visible = false;
-            panelButtons.Paint += tableLayoutPanel1_Paint;
-            // 
-            // addNew
-            // 
-            addNew.Dock = DockStyle.Fill;
-            addNew.Location = new Point(3 , 3);
-            addNew.Name = "addNew";
-            addNew.Size = new Size(153 , 140);
-            addNew.TabIndex = 0;
-            addNew.Text = "Add";
-            addNew.UseVisualStyleBackColor = true;
-            // 
-            // change
-            // 
-            change.Dock = DockStyle.Fill;
-            change.Location = new Point(3 , 149);
-            change.Name = "change";
-            change.Size = new Size(153 , 166);
-            change.TabIndex = 1;
-            change.Text = "Change";
-            change.UseVisualStyleBackColor = true;
-            // 
-            // remove
-            // 
-            remove.Dock = DockStyle.Fill;
-            remove.Location = new Point(3 , 321);
-            remove.Name = "remove";
-            remove.Size = new Size(153 , 126);
-            remove.TabIndex = 2;
-            remove.Text = "Remove";
-            remove.UseVisualStyleBackColor = true;
             // 
             // saveToFile
             // 
             saveToFile.Dock = DockStyle.Fill;
-            saveToFile.Location = new Point(3 , 453);
+            saveToFile.FlatStyle = FlatStyle.Flat;
+            saveToFile.Location = new Point(3 , 448);
             saveToFile.Name = "saveToFile";
-            saveToFile.Size = new Size(153 , 116);
+            saveToFile.Size = new Size(153 , 121);
             saveToFile.TabIndex = 3;
-            saveToFile.Text = "Save to file";
-            saveToFile.UseVisualStyleBackColor = false;
-            saveToFile.Visible = false;
+            saveToFile.Text = "Экспортировать слово в файл";
+            saveToFile.UseVisualStyleBackColor = true;
+            saveToFile.Click += saveToFile_Click;
+            // 
+            // addNew
+            // 
+            addNew.Dock = DockStyle.Fill;
+            addNew.FlatStyle = FlatStyle.Flat;
+            addNew.Location = new Point(3 , 3);
+            addNew.Name = "addNew";
+            addNew.Size = new Size(153 , 132);
+            addNew.TabIndex = 0;
+            addNew.Text = "Добавить";
+            addNew.UseVisualStyleBackColor = true;
+            addNew.Click += addNew_Click;
+            // 
+            // change
+            // 
+            change.Dock = DockStyle.Fill;
+            change.FlatStyle = FlatStyle.Flat;
+            change.Location = new Point(3 , 141);
+            change.Name = "change";
+            change.Size = new Size(153 , 141);
+            change.TabIndex = 1;
+            change.Text = "Изменить";
+            change.UseVisualStyleBackColor = true;
+            change.Click += change_Click;
+            // 
+            // remove
+            // 
+            remove.Dock = DockStyle.Fill;
+            remove.FlatStyle = FlatStyle.Flat;
+            remove.Location = new Point(3 , 288);
+            remove.Name = "remove";
+            remove.Size = new Size(153 , 154);
+            remove.TabIndex = 2;
+            remove.Text = "Удалить";
+            remove.UseVisualStyleBackColor = true;
+            remove.Click += remove_Click;
             // 
             // Form1
             // 
@@ -241,5 +258,6 @@
         private Button change;
         private Button remove;
         private Button saveToFile;
+        private ToolStripMenuItem CreateNewFileToolStripMenuItem;
     }
 }

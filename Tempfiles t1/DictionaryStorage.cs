@@ -40,22 +40,31 @@ namespace ProjectLogic
             return result;
         }
  //  ■ Слово и варианты его переводов можно экспортировать в отдельный файл результата.
-        public static void ExportWordToFile(LanguageDictionary dict, string word, string fileName, string filePath = "Translations")
+        public static void ExportWordToFile(LanguageDictionary dict , string word , string fileName , string filePath = "Translations")
         {
-            var FilePath = Path.Combine(filePath, fileName);
-            var entry = dict.Words.TryGetValue(word, out DictionaryEntry? value) ? value : null;
-            if (entry == null)
+            var fileFullPath = Path.Combine(filePath , fileName);
+            if (!dict.Words.TryGetValue(word , out DictionaryEntry? entry) || entry == null)
             {
                 throw new ArgumentException("Слово не найдено в словаре.");
             }
-            string json = JsonSerializer.Serialize(entry, new JsonSerializerOptions
+            var exportObject = new
             {
-                WriteIndented = true,
-                Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+                Слово = word ,
+                Переводы = entry.Translations
+            };
 
+            string json = JsonSerializer.Serialize(exportObject , new JsonSerializerOptions
+            {
+                WriteIndented = true ,
+                Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
             });
 
-            File.WriteAllText(FilePath, json);
+            var directory = Path.GetDirectoryName(fileFullPath);
+            if (!Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory!);
+            }
+            File.WriteAllText(fileFullPath , json);
         }
     }
 }

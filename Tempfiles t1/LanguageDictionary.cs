@@ -18,20 +18,10 @@ namespace ProjectLogic
             Words = new Dictionary<string, DictionaryEntry>();
         }
 
-        public void AddWord(string word, List<string> translations)
-        {
-            Words[word] = new DictionaryEntry { Translations = translations };
-        }
+        //public void AddWord(string word, List<string> translations)
+        //{
+        //    Words[word] = new DictionaryEntry { Translations = translations };
+        //}
         
-        public void AddTranslation(string word, string translation)
-        {
-            if (!Words.TryGetValue(word, out var entry))
-                throw new ArgumentException("Слово не найдено в словаре.");
-
-            if (!entry.Translations.Contains(translation))
-                entry.Translations.Add(translation);
-            else
-                throw new ArgumentException("Такой перевод уже существует.");
-        }
     }
 }

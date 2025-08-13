@@ -30,7 +30,7 @@ namespace ProjectLogic
                 throw new ArgumentException("Переводы не могут быть пустыми.");
             }
             var entry = new DictionaryEntry { Translations = translations };
-            dictionary.Words.Add(word, entry);
+            dictionary.Words[word] = new DictionaryEntry { Translations = translations };
         }
         // ■ Заменять слово или его перевод в словаре.
         public static void AddTranslation(this LanguageDictionary dictionary, string word, string translation)
@@ -38,9 +38,17 @@ namespace ProjectLogic
             if (!dictionary.Words.TryGetValue(word, out var entry)) {
                 throw new ArgumentException("Слово не найдено в словаре.");
             }
-            if (!entry.Translations.Contains(translation)) {
-                entry.Translations.Add(translation);
+            if (word == translation) {
+                throw new ArgumentException("Слово не может быть таким же, как перевод.");
             }
+            if (string.IsNullOrWhiteSpace(translation)) {
+                throw new ArgumentException("Перевод не может быть пустым.");
+            }
+
+            if (entry.Translations.Contains(translation)) {
+                throw new ArgumentException("Перевод уже существует для этого слова.");
+            }
+                entry.Translations.Add(translation);
         }
         public static List<string> GetTranslations(this LanguageDictionary dictionary, string word)
         {
@@ -57,8 +65,12 @@ namespace ProjectLogic
         }
 
         // Заменить слово в словаре
-        public static void ReplaceWord(this LanguageDictionary dict , string oldWord , string newWord)
+        public static void ReplaceWord(this LanguageDictionary dict , string oldWord , string? newWord)
         {
+            if (string.IsNullOrWhiteSpace(newWord))
+            {
+                throw new ArgumentException("Новое слово не может быть пустым.");
+            }
             if (!dict.Words.TryGetValue(oldWord , out var entry))
             {
                 throw new ArgumentException("Слово не найдено в словаре.");
@@ -67,16 +79,36 @@ namespace ProjectLogic
             {
                 throw new ArgumentException("Новое слово уже существует в словаре.");
             }
+            if (oldWord == newWord)
+            {
+                throw new ArgumentException("Новое слово не может быть таким же, как старое слово.");
+            }
             dict.Words.Remove(oldWord);
             dict.Words.Add(newWord, entry);
         }
 
         // Заменить перевод слова
-        public static void ReplaceTranslation(this LanguageDictionary dict , string word , string oldTrans , string newTrans)
+        public static void ReplaceTranslation(this LanguageDictionary dict , string word , string oldTrans , string? newTrans)
         {
+            if (string.IsNullOrWhiteSpace(newTrans))
+            {
+                throw new ArgumentException("Новый перевод не может быть пустым.");
+            }
+            if (string.IsNullOrWhiteSpace(word))
+            {
+                throw new ArgumentException("Слово не может быть пустым");   
+            }
             if (!dict.Words.TryGetValue(word , out var entry))
             {
                 throw new ArgumentException("Слово не найдено в словаре.");
+            }
+            if (word == newTrans)
+            {
+                throw new ArgumentException("Перевод не может быть таким же, как слово.");
+            }
+            if (newTrans == oldTrans)
+            {
+                throw new ArgumentException("Новый перевод не может быть таким же, как старый перевод.");
             }
             int index = entry.Translations.IndexOf(oldTrans);
             if (index == -1)
