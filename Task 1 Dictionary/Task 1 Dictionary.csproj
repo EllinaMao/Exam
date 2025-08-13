@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Task1 logic\ProjectLogic.csproj" />
     <ProjectReference Include="..\Tempfiles t1\ProjectLogic.csproj" />
   </ItemGroup>
 
