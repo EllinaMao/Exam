@@ -227,7 +227,7 @@
             Controls.Add(menuStrip1);
             Margin = new Padding(3 , 4 , 3 , 4);
             Name = "Form1";
-            Text = "Form1";
+            Text = "Программа словари";
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             splitContainer1.Panel1.ResumeLayout(false);

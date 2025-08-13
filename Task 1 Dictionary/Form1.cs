@@ -33,17 +33,17 @@ namespace Task_1_Dictionary
 
         private void Dictionary_KeyDown(object? sender , KeyEventArgs e)
         {
-            if(e.Control && e.KeyCode == Keys.N)
+            if (e.Control && e.KeyCode == Keys.N)
             {
-                createNewFileToolStripMenuItem_Click(sender, e);
+                createNewFileToolStripMenuItem_Click(sender , e);
             }
             else if (e.Control && e.KeyCode == Keys.O)
             {
-                openFileToolStripMenuItem_Click(sender, e);
+                openFileToolStripMenuItem_Click(sender , e);
             }
             else if (e.Control && e.KeyCode == Keys.S)
             {
-                saveFileToolStripMenuItem_Click(sender, e);
+                saveFileToolStripMenuItem_Click(sender , e);
             }
         }
 
@@ -393,5 +393,7 @@ namespace Task_1_Dictionary
                 MessageBox.Show("Ошибка при создании словаря: " + ex.Message);
             }
         }
+
+
     }
 }
