@@ -30,25 +30,6 @@ namespace login_logic
             return true;
         }
 
-        // Регистрация администратора
-        public bool Register(User user)
-        {
-            if (user is not Admin)
-            {
-                Console.WriteLine("Только администратор может быть зарегистрирован таким образом.");
-                return false;
-            }
-            if (users.ContainsKey(user.Login))
-            {
-                Console.WriteLine($"Пользователь с логином {user.Login} уже существует!");
-                return false;
-            }
-
-            users[user.Login] = user;
-            SaveUsers();
-            Console.WriteLine($"Администратор {user.Login} зарегистрирован.");
-            return true;
-        }
 
         public bool Login(string login , string password)
         {
@@ -56,7 +37,7 @@ namespace login_logic
             {
                 if (user.CheckPassword(password))
                 {
-                    string role = user is Admin ? "администратор" : "пользователь";
+                    string role = "пользователь";
                     Console.WriteLine($"Добро пожаловать, {user.Login}! Вы вошли как {role}.");
                     return true;
                 }
@@ -78,11 +59,14 @@ namespace login_logic
                         Login = u.Login ,
                         DateOfBirth = u.DateOfBirth ,
                         PasswordHash = u.GetPasswordHash() ,
-                        Type = u is Admin ? "login_logic.Admin" : "login_logic.RegularUser"
+                        Type = u.GetType().FullName ?? "login_logic.RegularUser"
                     });
                 }
 
-                var options = new JsonSerializerOptions { WriteIndented = true };
+                var options = new JsonSerializerOptions
+                {
+                    WriteIndented = true
+                };
                 File.WriteAllText(FilePath , JsonSerializer.Serialize(jsonUsers , options));
             }
             catch (Exception ex)
@@ -99,7 +83,7 @@ namespace login_logic
                 if (!File.Exists(FilePath)) return;
 
                 string json = File.ReadAllText(FilePath);
-                if (string.IsNullOrWhiteSpace(json)) return;
+                if (string.IsNullOrWhiteSpace(json) || json.Trim() == "[]") return;
 
                 var jsonUsers = JsonSerializer.Deserialize<List<JsonUser>>(json);
                 if (jsonUsers == null) return;
@@ -107,10 +91,7 @@ namespace login_logic
                 users.Clear();
                 foreach (var j in jsonUsers)
                 {
-                    User user = j.Type == "Admin"
-                        ? new Admin(j.Login , "dummy" , j.DateOfBirth)
-                        : new User(j.Login , "dummy" , j.DateOfBirth);
-
+                    User user = new RegularUser(j.Login , "dummy" , j.DateOfBirth);
                     user.SetPasswordHash(j.PasswordHash);
                     users[user.Login] = user;
                 }
@@ -127,7 +108,7 @@ namespace login_logic
             public string Login { get; set; }
             public DateOnly DateOfBirth { get; set; }
             public string PasswordHash { get; set; }
-            public string Type { get; set; } // "User" или "Admin"
+            public string Type { get; set; } // Тип файла, для будущей возможности расширения функционала
         }
     }
 }
