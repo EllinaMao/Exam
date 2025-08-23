@@ -11,6 +11,6 @@ namespace GuessGame
         string Title { get; }
         string Description { get; }
         string Category { get; }
-        Dictionary<string , List<string>> GetQuestions();
+        List <Question> Questions { get; }
     }
 }
