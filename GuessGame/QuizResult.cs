@@ -8,7 +8,7 @@ namespace GuessGame
 {
     public class QuizResult
     {
-        public string UserLogin { get; set; }   // 🔹 кто проходил
+        public string UserLogin { get; set; }   // кто проходил
         public string QuizTitle { get; set; }
         public int Score { get; set; }
         public DateTime Date { get; set; }

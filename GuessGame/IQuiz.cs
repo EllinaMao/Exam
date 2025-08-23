@@ -9,6 +9,8 @@ namespace GuessGame
     public interface IQuiz
     {
         string Title { get; }
-        List<Question> Questions { get; }
+        string Description { get; }
+        string Category { get; }
+        Dictionary<string , List<string>> GetQuestions();
     }
 }
