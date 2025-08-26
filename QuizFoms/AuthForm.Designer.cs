@@ -38,11 +38,16 @@
             name_register_panel = new TableLayoutPanel();
             register_button = new Button();
             login_button = new Button();
+            GameChoicePanel = new TableLayoutPanel();
+            backToLoginScreen = new Button();
+            enter_Edditor = new Button();
+            enterGame = new Button();
             text_boxes_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             Backcolor.SuspendLayout();
             name_register_panel.SuspendLayout();
+            GameChoicePanel.SuspendLayout();
             SuspendLayout();
             // 
             // text_boxes_panel
@@ -146,6 +151,7 @@
             name_register_panel.Name = "name_register_panel";
             name_register_panel.RowCount = 1;
             name_register_panel.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            name_register_panel.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             name_register_panel.Size = new Size(318, 49);
             name_register_panel.TabIndex = 2;
             // 
@@ -182,12 +188,80 @@
             login_button.UseVisualStyleBackColor = false;
             login_button.Click += login_button_Click;
             // 
+            // GameChoicePanel
+            // 
+            GameChoicePanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            GameChoicePanel.ColumnCount = 1;
+            GameChoicePanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            GameChoicePanel.Controls.Add(backToLoginScreen, 0, 2);
+            GameChoicePanel.Controls.Add(enter_Edditor, 0, 1);
+            GameChoicePanel.Controls.Add(enterGame, 0, 0);
+            GameChoicePanel.Location = new Point(241, 133);
+            GameChoicePanel.Name = "GameChoicePanel";
+            GameChoicePanel.RowCount = 3;
+            GameChoicePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            GameChoicePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            GameChoicePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            GameChoicePanel.Size = new Size(318, 143);
+            GameChoicePanel.TabIndex = 3;
+            GameChoicePanel.Visible = false;
+            // 
+            // backToLoginScreen
+            // 
+            backToLoginScreen.BackColor = Color.White;
+            backToLoginScreen.Dock = DockStyle.Fill;
+            backToLoginScreen.FlatAppearance.BorderSize = 0;
+            backToLoginScreen.FlatAppearance.MouseDownBackColor = Color.FromArgb(128, 128, 255);
+            backToLoginScreen.FlatAppearance.MouseOverBackColor = Color.FromArgb(192, 192, 255);
+            backToLoginScreen.FlatStyle = FlatStyle.Flat;
+            backToLoginScreen.Font = new Font("Tahoma", 12F, FontStyle.Bold);
+            backToLoginScreen.Location = new Point(3, 97);
+            backToLoginScreen.Name = "backToLoginScreen";
+            backToLoginScreen.Size = new Size(312, 43);
+            backToLoginScreen.TabIndex = 3;
+            backToLoginScreen.Text = "Выйти с аккаунта";
+            backToLoginScreen.UseVisualStyleBackColor = false;
+            backToLoginScreen.Click += backToLoginScreen_Click;
+            // 
+            // enter_Edditor
+            // 
+            enter_Edditor.BackColor = Color.White;
+            enter_Edditor.Dock = DockStyle.Fill;
+            enter_Edditor.FlatAppearance.BorderSize = 0;
+            enter_Edditor.FlatAppearance.MouseDownBackColor = Color.FromArgb(128, 128, 255);
+            enter_Edditor.FlatAppearance.MouseOverBackColor = Color.FromArgb(192, 192, 255);
+            enter_Edditor.FlatStyle = FlatStyle.Flat;
+            enter_Edditor.Font = new Font("Tahoma", 12F, FontStyle.Bold);
+            enter_Edditor.Location = new Point(3, 50);
+            enter_Edditor.Name = "enter_Edditor";
+            enter_Edditor.Size = new Size(312, 41);
+            enter_Edditor.TabIndex = 2;
+            enter_Edditor.Text = "Открыть еддитор";
+            enter_Edditor.UseVisualStyleBackColor = false;
+            // 
+            // enterGame
+            // 
+            enterGame.BackColor = Color.White;
+            enterGame.Dock = DockStyle.Fill;
+            enterGame.FlatAppearance.BorderSize = 0;
+            enterGame.FlatAppearance.MouseDownBackColor = Color.FromArgb(128, 128, 255);
+            enterGame.FlatAppearance.MouseOverBackColor = Color.FromArgb(192, 192, 255);
+            enterGame.FlatStyle = FlatStyle.Flat;
+            enterGame.Font = new Font("Tahoma", 12F, FontStyle.Bold);
+            enterGame.Location = new Point(3, 3);
+            enterGame.Name = "enterGame";
+            enterGame.Size = new Size(312, 41);
+            enterGame.TabIndex = 0;
+            enterGame.Text = "Начать игру";
+            enterGame.UseVisualStyleBackColor = false;
+            // 
             // AuthForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.CornflowerBlue;
             ClientSize = new Size(800, 450);
+            Controls.Add(GameChoicePanel);
             Controls.Add(name_register_panel);
             Controls.Add(Backcolor);
             Controls.Add(text_boxes_panel);
@@ -200,6 +274,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             Backcolor.ResumeLayout(false);
             name_register_panel.ResumeLayout(false);
+            GameChoicePanel.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -215,5 +290,9 @@
         private TableLayoutPanel name_register_panel;
         private Button register_button;
         private Button login_button;
+        private TableLayoutPanel GameChoicePanel;
+        private Button enter_Edditor;
+        private Button enterGame;
+        private Button backToLoginScreen;
     }
 }

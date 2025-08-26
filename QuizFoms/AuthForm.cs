@@ -5,6 +5,8 @@ namespace QuizFoms
     public partial class AuthForm : Form
     {
         AuthService authService;
+        User ThisUser { get; set; }
+
         public AuthForm()
         {
             authService = new();
@@ -16,14 +18,30 @@ namespace QuizFoms
         {
             try
             {
-                authService.Login(login_box.Text, password_box.Text);
+                ThisUser = authService.Login(login_box.Text, password_box.Text);
+                if (ThisUser != null)
+                {
+                    VisibleMenu(false);
+                }
             }
-            catch
-            
+            catch (InvalidLoginOrPasswordException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
+        private void VisibleMenu(bool show)
+        {
+            text_boxes_panel.Visible = show;
+            name_register_panel.Visible = show;
+            AuthText.Visible = show;
+            GameChoicePanel.Visible = !show;
 
+        }
 
-
+        private void backToLoginScreen_Click(object sender, EventArgs e)
+        {
+            ThisUser = null;
+        }
     }
 }

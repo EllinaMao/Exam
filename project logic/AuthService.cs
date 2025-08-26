@@ -18,7 +18,7 @@ namespace login_logic
             }
             catch (Exception ex)
             {
-                throw new Exception("Failed to initialize AuthService.", ex);
+                throw new InvalidOperationException("Failed to initialize AuthService.", ex);
             }
         }
 
@@ -37,7 +37,7 @@ namespace login_logic
             }
             catch (Exception ex)
             {
-                throw new Exception("Failed to save users after registration.", ex);
+                throw new InvalidOperationException("Failed to save users after registration.", ex);
             }
         }
 
@@ -115,7 +115,7 @@ namespace login_logic
             }
 
             if (jsonUsers == null)
-                throw new Exception("User data is corrupted or empty.");
+                throw new InvalidOperationException("User data is corrupted or empty.");
 
             users.Clear();
             foreach (var j in jsonUsers)

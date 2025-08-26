@@ -24,7 +24,6 @@ namespace login_logic
             authService.Register("newUser" , "newPassword" , new DateOnly(1995 , 5 , 15));
             authService.Register("newUser" , "anotherPassword" , new DateOnly(1995 , 5 , 15)); // This should fail due to existing username
             authService.Register("newUser2" , "anotherPassword" , new DateOnly(1995 , 5 , 15));
-            bool loginSuccess = authService.Login("testUser" , "password123");
             }
             catch (Exception ex)
             {
