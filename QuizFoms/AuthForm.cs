@@ -49,7 +49,8 @@ namespace QuizFoms
         {
             //тут вызываем отдельную форму которая сама разбирается с ошибками
             var registerForm = new RegisterForm(authService);
-            if (registerForm.ShowDialog() == DialogResult.OK)
+            var result = registerForm.ShowDialog();
+            if (result == DialogResult.OK)
             {
                 MessageBox.Show("Теперь можете войти под своим логином и паролем.");
             }
