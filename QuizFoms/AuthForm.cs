@@ -47,12 +47,13 @@ namespace QuizFoms
         
         private void register_button_Click(object sender, EventArgs e)
         {
-            try
+            //тут вызываем отдельную форму которая сама разбирается с ошибками
+            var registerForm = new RegisterForm(authService);
+            if (registerForm.ShowDialog() == DialogResult.OK)
             {
-                authService.Register(login_box.Text, password_box.Text);
-
+                MessageBox.Show("Теперь можете войти под своим логином и паролем.");
             }
-            catch
+
         }
 
     }
