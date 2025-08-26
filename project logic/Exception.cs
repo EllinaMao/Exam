@@ -8,7 +8,8 @@ namespace login_logic
 {
     public class InvalidLoginOrPasswordException : Exception
     {
+        //класс осознанно не разделяет что неправильное, что бы не показывать где ошибка в случае попытки взлома(хотя кому это надо, это викторинка)
         public InvalidLoginOrPasswordException(string login)
-            : base($"Invalid login or password for user: {login}") { }
+            : base($"Неправильный логин или пароль пользователя: {login}") { }
     }
 }

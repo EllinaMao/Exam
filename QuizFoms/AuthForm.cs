@@ -5,7 +5,7 @@ namespace QuizFoms
     public partial class AuthForm : Form
     {
         AuthService authService;
-        User ThisUser { get; set; }
+        User? ThisUser { get; set; }
 
         public AuthForm()
         {
@@ -42,6 +42,18 @@ namespace QuizFoms
         private void backToLoginScreen_Click(object sender, EventArgs e)
         {
             ThisUser = null;
+            VisibleMenu(true);
         }
+        
+        private void register_button_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                authService.Register(login_box.Text, password_box.Text);
+
+            }
+            catch
+        }
+
     }
 }

@@ -168,8 +168,9 @@
             register_button.Name = "register_button";
             register_button.Size = new Size(153, 43);
             register_button.TabIndex = 1;
-            register_button.Text = "Register";
+            register_button.Text = "Регистрация";
             register_button.UseVisualStyleBackColor = false;
+            register_button.Click += register_button_Click;
             // 
             // login_button
             // 
@@ -184,7 +185,7 @@
             login_button.Name = "login_button";
             login_button.Size = new Size(153, 43);
             login_button.TabIndex = 0;
-            login_button.Text = "Log in";
+            login_button.Text = "Залогиниться";
             login_button.UseVisualStyleBackColor = false;
             login_button.Click += login_button_Click;
             // 
