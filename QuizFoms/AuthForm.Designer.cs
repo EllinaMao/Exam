@@ -42,12 +42,14 @@
             backToLoginScreen = new Button();
             enter_Edditor = new Button();
             enterGame = new Button();
+            pictureBox3 = new PictureBox();
             text_boxes_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             Backcolor.SuspendLayout();
             name_register_panel.SuspendLayout();
             GameChoicePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             SuspendLayout();
             // 
             // text_boxes_panel
@@ -256,12 +258,24 @@
             enterGame.Text = "Начать игру";
             enterGame.UseVisualStyleBackColor = false;
             // 
+            // pictureBox3
+            // 
+            pictureBox3.Image = Properties.Resources.view;
+            pictureBox3.Location = new Point(572, 211);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(25, 29);
+            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox3.TabIndex = 4;
+            pictureBox3.TabStop = false;
+            pictureBox3.Click += pictureBox3_Click;
+            // 
             // AuthForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.CornflowerBlue;
             ClientSize = new Size(800, 450);
+            Controls.Add(pictureBox3);
             Controls.Add(GameChoicePanel);
             Controls.Add(name_register_panel);
             Controls.Add(Backcolor);
@@ -276,6 +290,7 @@
             Backcolor.ResumeLayout(false);
             name_register_panel.ResumeLayout(false);
             GameChoicePanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ResumeLayout(false);
         }
 
@@ -283,7 +298,6 @@
 
         private TableLayoutPanel text_boxes_panel;
         private Panel Backcolor;
-        private Label AuthText;
         private TextBox password_box;
         private TextBox login_box;
         private PictureBox pictureBox1;
@@ -295,5 +309,7 @@
         private Button enter_Edditor;
         private Button enterGame;
         private Button backToLoginScreen;
+        private Label AuthText;
+        private PictureBox pictureBox3;
     }
 }

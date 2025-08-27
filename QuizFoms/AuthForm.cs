@@ -1,4 +1,5 @@
 ﻿using login_logic;
+using System.Windows.Forms;
 
 namespace QuizFoms
 {
@@ -9,6 +10,7 @@ namespace QuizFoms
 
         public AuthForm()
         {
+            this.StartPosition = FormStartPosition.CenterScreen;
             authService = new();
             authService.LoadUsers();
             InitializeComponent();
@@ -35,6 +37,7 @@ namespace QuizFoms
             text_boxes_panel.Visible = show;
             name_register_panel.Visible = show;
             AuthText.Visible = show;
+            pictureBox3.Visible = show;
             GameChoicePanel.Visible = !show;
 
         }
@@ -44,7 +47,7 @@ namespace QuizFoms
             ThisUser = null;
             VisibleMenu(true);
         }
-        
+
         private void register_button_Click(object sender, EventArgs e)
         {
             //тут вызываем отдельную форму которая сама разбирается с ошибками
@@ -57,5 +60,9 @@ namespace QuizFoms
 
         }
 
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            password_box.UseSystemPasswordChar = !password_box.UseSystemPasswordChar;
+        }
     }
 }
