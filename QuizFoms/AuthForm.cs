@@ -64,5 +64,31 @@ namespace QuizFoms
         {
             password_box.UseSystemPasswordChar = !password_box.UseSystemPasswordChar;
         }
+
+        private void enterGame_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                throw new NotImplementedException();
+            }
+            catch
+            {
+                MessageBox.Show("Не реализовано");
+            }
+        }
+
+        private void enter_Edditor_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+            throw new NotImplementedException();
+            }
+            catch
+            {
+                MessageBox.Show("Не реализовано");
+            }
+        }
     }
 }

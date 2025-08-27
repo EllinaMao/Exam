@@ -241,6 +241,7 @@
             enter_Edditor.TabIndex = 2;
             enter_Edditor.Text = "Открыть еддитор";
             enter_Edditor.UseVisualStyleBackColor = false;
+            enter_Edditor.Click += enter_Edditor_Click;
             // 
             // enterGame
             // 
@@ -257,6 +258,7 @@
             enterGame.TabIndex = 0;
             enterGame.Text = "Начать игру";
             enterGame.UseVisualStyleBackColor = false;
+            enterGame.Click += enterGame_Click;
             // 
             // pictureBox3
             // 
