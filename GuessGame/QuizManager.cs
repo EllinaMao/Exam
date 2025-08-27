@@ -28,6 +28,7 @@ namespace GuessGame
             if (quizzes != null)
                 AllQuizzes.AddRange(quizzes);
         }
+
         public static void SaveAllToDifferentFolder(string folderPath)
         {
             foreach (var quiz in AllQuizzes)
@@ -36,6 +37,7 @@ namespace GuessGame
                 QuizStorage.SaveToFile(quiz, filePath);
             }
         }
+
         public static void SaveAllToFile(string filePath)
         {
             var json = JsonSerializer.Serialize(AllQuizzes, new JsonSerializerOptions { WriteIndented = true });
