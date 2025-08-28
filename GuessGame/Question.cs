@@ -10,13 +10,13 @@ namespace GuessGame
     public class Question
     {
         [JsonPropertyName("Текст вопроса")]
-        public string Text { get; init; }
+        public string Text { get; set; }
 
         [JsonPropertyName("Варианты ответов")]
-        public List<string> Answers { get; init; }
+        public List<string> Answers { get; set; }
 
         [JsonPropertyName("Номера правильных ответов")]
-        public List<int> CorrectIndexes { get; init; }  //правильные ответы
+        public List<int> CorrectIndexes { get; set; }  //правильные ответы
 
         public Question()
         {
