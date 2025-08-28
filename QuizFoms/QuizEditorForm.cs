@@ -36,21 +36,26 @@ namespace QuizFoms
         {
             if (listBoxQuestions.SelectedItem is Question selectedQuestion)
             {
-                txtQuestion.Text = selectedQuestion.Text;
-                checkedListBoxAnswers.Items.Clear();
+                txtQuestionTxt.Text = selectedQuestion.Text;
+                checkedListAnswers.Items.Clear();
 
                 // Загружаем варианты ответов
                 for (int i = 0; i < selectedQuestion.Answers.Count; i++)
                 {
-                    int idx = checkedListBoxAnswers.Items.Add(selectedQuestion.Answers[i]);
+                    int idx = checkedListAnswers.Items.Add(selectedQuestion.Answers[i]);
                     // помечаем правильные варианты
                     if (selectedQuestion.CorrectIndexes.Contains(i))
-                        checkedListBoxAnswers.SetItemChecked(idx, true);
+                        checkedListAnswers.SetItemChecked(idx, true);
                 }
             }
         }
 
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
         {
 
         }

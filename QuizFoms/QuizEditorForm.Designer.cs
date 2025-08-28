@@ -46,7 +46,12 @@
             btChangeQuestion = new Button();
             btDeleteQuestion = new Button();
             splitContainer4 = new SplitContainer();
-            checkedListBox1 = new CheckedListBox();
+            splitContainer5 = new SplitContainer();
+            gbTextfield = new GroupBox();
+            tableLayoutPanel2 = new TableLayoutPanel();
+            lbQuestion = new Label();
+            txtQuestionTxt = new TextBox();
+            checkedListAnswers = new CheckedListBox();
             flowLayoutPanel2 = new FlowLayoutPanel();
             btAddAnswer = new Button();
             btChangeAnswer = new Button();
@@ -74,6 +79,12 @@
             splitContainer4.Panel1.SuspendLayout();
             splitContainer4.Panel2.SuspendLayout();
             splitContainer4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer5).BeginInit();
+            splitContainer5.Panel1.SuspendLayout();
+            splitContainer5.Panel2.SuspendLayout();
+            splitContainer5.SuspendLayout();
+            gbTextfield.SuspendLayout();
+            tableLayoutPanel2.SuspendLayout();
             flowLayoutPanel2.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -301,7 +312,7 @@
             // 
             // splitContainer4.Panel1
             // 
-            splitContainer4.Panel1.Controls.Add(checkedListBox1);
+            splitContainer4.Panel1.Controls.Add(splitContainer5);
             // 
             // splitContainer4.Panel2
             // 
@@ -310,15 +321,79 @@
             splitContainer4.SplitterDistance = 400;
             splitContainer4.TabIndex = 2;
             // 
-            // checkedListBox1
+            // splitContainer5
             // 
-            checkedListBox1.Dock = DockStyle.Fill;
-            checkedListBox1.FormattingEnabled = true;
-            checkedListBox1.Location = new Point(0, 0);
-            checkedListBox1.Name = "checkedListBox1";
-            checkedListBox1.Size = new Size(686, 400);
-            checkedListBox1.TabIndex = 7;
-            checkedListBox1.SelectedIndexChanged += checkedListBox1_SelectedIndexChanged;
+            splitContainer5.Dock = DockStyle.Fill;
+            splitContainer5.Location = new Point(0, 0);
+            splitContainer5.Name = "splitContainer5";
+            splitContainer5.Orientation = Orientation.Horizontal;
+            // 
+            // splitContainer5.Panel1
+            // 
+            splitContainer5.Panel1.Controls.Add(gbTextfield);
+            // 
+            // splitContainer5.Panel2
+            // 
+            splitContainer5.Panel2.Controls.Add(checkedListAnswers);
+            splitContainer5.Size = new Size(686, 400);
+            splitContainer5.SplitterDistance = 57;
+            splitContainer5.TabIndex = 0;
+            // 
+            // gbTextfield
+            // 
+            gbTextfield.Controls.Add(tableLayoutPanel2);
+            gbTextfield.Dock = DockStyle.Fill;
+            gbTextfield.Location = new Point(0, 0);
+            gbTextfield.Name = "gbTextfield";
+            gbTextfield.Size = new Size(686, 57);
+            gbTextfield.TabIndex = 0;
+            gbTextfield.TabStop = false;
+            gbTextfield.Text = "groupBox2";
+            // 
+            // tableLayoutPanel2
+            // 
+            tableLayoutPanel2.ColumnCount = 2;
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 15.11335F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 84.88665F));
+            tableLayoutPanel2.Controls.Add(lbQuestion, 0, 0);
+            tableLayoutPanel2.Controls.Add(txtQuestionTxt, 1, 0);
+            tableLayoutPanel2.Dock = DockStyle.Left;
+            tableLayoutPanel2.Location = new Point(3, 19);
+            tableLayoutPanel2.Margin = new Padding(3, 2, 3, 2);
+            tableLayoutPanel2.Name = "tableLayoutPanel2";
+            tableLayoutPanel2.RowCount = 1;
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanel2.Size = new Size(572, 35);
+            tableLayoutPanel2.TabIndex = 1;
+            // 
+            // lbQuestion
+            // 
+            lbQuestion.AutoSize = true;
+            lbQuestion.Dock = DockStyle.Fill;
+            lbQuestion.Location = new Point(3, 0);
+            lbQuestion.Name = "lbQuestion";
+            lbQuestion.Size = new Size(80, 35);
+            lbQuestion.TabIndex = 0;
+            lbQuestion.Text = "Текст вопроса";
+            lbQuestion.Click += label4_Click;
+            // 
+            // txtQuestionTxt
+            // 
+            txtQuestionTxt.Dock = DockStyle.Fill;
+            txtQuestionTxt.Location = new Point(89, 2);
+            txtQuestionTxt.Margin = new Padding(3, 2, 3, 2);
+            txtQuestionTxt.Name = "txtQuestionTxt";
+            txtQuestionTxt.Size = new Size(480, 23);
+            txtQuestionTxt.TabIndex = 3;
+            // 
+            // checkedListAnswers
+            // 
+            checkedListAnswers.Dock = DockStyle.Fill;
+            checkedListAnswers.FormattingEnabled = true;
+            checkedListAnswers.Location = new Point(0, 0);
+            checkedListAnswers.Name = "checkedListAnswers";
+            checkedListAnswers.Size = new Size(686, 339);
+            checkedListAnswers.TabIndex = 8;
             // 
             // flowLayoutPanel2
             // 
@@ -433,6 +508,13 @@
             splitContainer4.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer4).EndInit();
             splitContainer4.ResumeLayout(false);
+            splitContainer5.Panel1.ResumeLayout(false);
+            splitContainer5.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer5).EndInit();
+            splitContainer5.ResumeLayout(false);
+            gbTextfield.ResumeLayout(false);
+            tableLayoutPanel2.ResumeLayout(false);
+            tableLayoutPanel2.PerformLayout();
             flowLayoutPanel2.ResumeLayout(false);
             panel1.ResumeLayout(false);
             ResumeLayout(false);
@@ -462,10 +544,15 @@
         private Button btChangeQuestion;
         private Button btDeleteQuestion;
         private SplitContainer splitContainer4;
-        private CheckedListBox checkedListBox1;
         private FlowLayoutPanel flowLayoutPanel2;
         private Button btAddAnswer;
         private Button btChangeAnswer;
         private Button btDeleteAnswer;
+        private SplitContainer splitContainer5;
+        private GroupBox gbTextfield;
+        private TableLayoutPanel tableLayoutPanel2;
+        private Label lbQuestion;
+        private TextBox txtQuestionTxt;
+        private CheckedListBox checkedListAnswers;
     }
 }
