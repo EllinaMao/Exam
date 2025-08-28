@@ -42,9 +42,9 @@
             listBoxQuestions = new ListBox();
             gQuizList = new GroupBox();
             flowLayoutPanel1 = new FlowLayoutPanel();
-            btAddQuestion = new Button();
-            btChangeQuestion = new Button();
-            btDeleteQuestion = new Button();
+            btnAddQuestion = new Button();
+            btnChangeQuestion = new Button();
+            btnDeleteQuestion = new Button();
             splitContainer4 = new SplitContainer();
             splitContainer5 = new SplitContainer();
             gbTextfield = new GroupBox();
@@ -53,9 +53,10 @@
             txtQuestionTxt = new TextBox();
             checkedListAnswers = new CheckedListBox();
             flowLayoutPanel2 = new FlowLayoutPanel();
-            btAddAnswer = new Button();
-            btChangeAnswer = new Button();
-            btDeleteAnswer = new Button();
+            btnAddAnswer = new Button();
+            btnChangeAnswer = new Button();
+            btnDeleteAnswer = new Button();
+            btnSaveQuestin = new Button();
             gbQuestionList = new GroupBox();
             panel1 = new Panel();
             btCansel = new Button();
@@ -263,9 +264,9 @@
             // 
             // flowLayoutPanel1
             // 
-            flowLayoutPanel1.Controls.Add(btAddQuestion);
-            flowLayoutPanel1.Controls.Add(btChangeQuestion);
-            flowLayoutPanel1.Controls.Add(btDeleteQuestion);
+            flowLayoutPanel1.Controls.Add(btnAddQuestion);
+            flowLayoutPanel1.Controls.Add(btnChangeQuestion);
+            flowLayoutPanel1.Controls.Add(btnDeleteQuestion);
             flowLayoutPanel1.Dock = DockStyle.Fill;
             flowLayoutPanel1.Location = new Point(0, 0);
             flowLayoutPanel1.Margin = new Padding(3, 2, 3, 2);
@@ -273,35 +274,38 @@
             flowLayoutPanel1.Size = new Size(357, 30);
             flowLayoutPanel1.TabIndex = 3;
             // 
-            // btAddQuestion
+            // btnAddQuestion
             // 
-            btAddQuestion.Location = new Point(3, 2);
-            btAddQuestion.Margin = new Padding(3, 2, 3, 2);
-            btAddQuestion.Name = "btAddQuestion";
-            btAddQuestion.Size = new Size(82, 22);
-            btAddQuestion.TabIndex = 0;
-            btAddQuestion.Text = "+";
-            btAddQuestion.UseVisualStyleBackColor = true;
+            btnAddQuestion.Location = new Point(3, 2);
+            btnAddQuestion.Margin = new Padding(3, 2, 3, 2);
+            btnAddQuestion.Name = "btnAddQuestion";
+            btnAddQuestion.Size = new Size(82, 22);
+            btnAddQuestion.TabIndex = 0;
+            btnAddQuestion.Text = "➕";
+            btnAddQuestion.UseVisualStyleBackColor = true;
+            btnAddQuestion.Click += btAddQuestion_Click;
             // 
-            // btChangeQuestion
+            // btnChangeQuestion
             // 
-            btChangeQuestion.Location = new Point(91, 2);
-            btChangeQuestion.Margin = new Padding(3, 2, 3, 2);
-            btChangeQuestion.Name = "btChangeQuestion";
-            btChangeQuestion.Size = new Size(82, 22);
-            btChangeQuestion.TabIndex = 1;
-            btChangeQuestion.Text = "Изменить";
-            btChangeQuestion.UseVisualStyleBackColor = true;
+            btnChangeQuestion.Location = new Point(91, 2);
+            btnChangeQuestion.Margin = new Padding(3, 2, 3, 2);
+            btnChangeQuestion.Name = "btnChangeQuestion";
+            btnChangeQuestion.Size = new Size(82, 22);
+            btnChangeQuestion.TabIndex = 1;
+            btnChangeQuestion.Text = "✏";
+            btnChangeQuestion.UseVisualStyleBackColor = true;
+            btnChangeQuestion.Click += btChangeQuestion_Click;
             // 
-            // btDeleteQuestion
+            // btnDeleteQuestion
             // 
-            btDeleteQuestion.Location = new Point(179, 2);
-            btDeleteQuestion.Margin = new Padding(3, 2, 3, 2);
-            btDeleteQuestion.Name = "btDeleteQuestion";
-            btDeleteQuestion.Size = new Size(82, 22);
-            btDeleteQuestion.TabIndex = 2;
-            btDeleteQuestion.Text = "-";
-            btDeleteQuestion.UseVisualStyleBackColor = true;
+            btnDeleteQuestion.Location = new Point(179, 2);
+            btnDeleteQuestion.Margin = new Padding(3, 2, 3, 2);
+            btnDeleteQuestion.Name = "btnDeleteQuestion";
+            btnDeleteQuestion.Size = new Size(82, 22);
+            btnDeleteQuestion.TabIndex = 2;
+            btnDeleteQuestion.Text = "➖";
+            btnDeleteQuestion.UseVisualStyleBackColor = true;
+            btnDeleteQuestion.Click += btDeleteQuestion_Click;
             // 
             // splitContainer4
             // 
@@ -375,7 +379,6 @@
             lbQuestion.Size = new Size(80, 35);
             lbQuestion.TabIndex = 0;
             lbQuestion.Text = "Текст вопроса";
-            lbQuestion.Click += label4_Click;
             // 
             // txtQuestionTxt
             // 
@@ -397,44 +400,57 @@
             // 
             // flowLayoutPanel2
             // 
-            flowLayoutPanel2.Controls.Add(btAddAnswer);
-            flowLayoutPanel2.Controls.Add(btChangeAnswer);
-            flowLayoutPanel2.Controls.Add(btDeleteAnswer);
+            flowLayoutPanel2.Controls.Add(btnAddAnswer);
+            flowLayoutPanel2.Controls.Add(btnChangeAnswer);
+            flowLayoutPanel2.Controls.Add(btnDeleteAnswer);
+            flowLayoutPanel2.Controls.Add(btnSaveQuestin);
             flowLayoutPanel2.Dock = DockStyle.Fill;
             flowLayoutPanel2.Location = new Point(0, 0);
             flowLayoutPanel2.Name = "flowLayoutPanel2";
             flowLayoutPanel2.Size = new Size(686, 29);
             flowLayoutPanel2.TabIndex = 7;
             // 
-            // btAddAnswer
+            // btnAddAnswer
             // 
-            btAddAnswer.Location = new Point(3, 2);
-            btAddAnswer.Margin = new Padding(3, 2, 3, 2);
-            btAddAnswer.Name = "btAddAnswer";
-            btAddAnswer.Size = new Size(82, 22);
-            btAddAnswer.TabIndex = 4;
-            btAddAnswer.Text = "+";
-            btAddAnswer.UseVisualStyleBackColor = true;
+            btnAddAnswer.Location = new Point(3, 2);
+            btnAddAnswer.Margin = new Padding(3, 2, 3, 2);
+            btnAddAnswer.Name = "btnAddAnswer";
+            btnAddAnswer.Size = new Size(82, 22);
+            btnAddAnswer.TabIndex = 4;
+            btnAddAnswer.Text = "➕";
+            btnAddAnswer.UseVisualStyleBackColor = true;
             // 
-            // btChangeAnswer
+            // btnChangeAnswer
             // 
-            btChangeAnswer.Location = new Point(91, 2);
-            btChangeAnswer.Margin = new Padding(3, 2, 3, 2);
-            btChangeAnswer.Name = "btChangeAnswer";
-            btChangeAnswer.Size = new Size(82, 22);
-            btChangeAnswer.TabIndex = 5;
-            btChangeAnswer.Text = "Изменить";
-            btChangeAnswer.UseVisualStyleBackColor = true;
+            btnChangeAnswer.Location = new Point(91, 2);
+            btnChangeAnswer.Margin = new Padding(3, 2, 3, 2);
+            btnChangeAnswer.Name = "btnChangeAnswer";
+            btnChangeAnswer.Size = new Size(82, 22);
+            btnChangeAnswer.TabIndex = 5;
+            btnChangeAnswer.Text = "✏";
+            btnChangeAnswer.UseVisualStyleBackColor = true;
             // 
-            // btDeleteAnswer
+            // btnDeleteAnswer
             // 
-            btDeleteAnswer.Location = new Point(179, 2);
-            btDeleteAnswer.Margin = new Padding(3, 2, 3, 2);
-            btDeleteAnswer.Name = "btDeleteAnswer";
-            btDeleteAnswer.Size = new Size(82, 22);
-            btDeleteAnswer.TabIndex = 6;
-            btDeleteAnswer.Text = "-";
-            btDeleteAnswer.UseVisualStyleBackColor = true;
+            btnDeleteAnswer.Location = new Point(179, 2);
+            btnDeleteAnswer.Margin = new Padding(3, 2, 3, 2);
+            btnDeleteAnswer.Name = "btnDeleteAnswer";
+            btnDeleteAnswer.Size = new Size(82, 22);
+            btnDeleteAnswer.TabIndex = 6;
+            btnDeleteAnswer.Text = "➖";
+            btnDeleteAnswer.UseVisualStyleBackColor = true;
+            btnDeleteAnswer.Click += btnDeleteAnswer_Click;
+            // 
+            // btnSaveQuestin
+            // 
+            btnSaveQuestin.Location = new Point(267, 2);
+            btnSaveQuestin.Margin = new Padding(3, 2, 3, 2);
+            btnSaveQuestin.Name = "btnSaveQuestin";
+            btnSaveQuestin.Size = new Size(82, 22);
+            btnSaveQuestin.TabIndex = 7;
+            btnSaveQuestin.Text = "✔";
+            btnSaveQuestin.UseVisualStyleBackColor = true;
+            btnSaveQuestin.Click += btnSaveQuestin_Click;
             // 
             // gbQuestionList
             // 
@@ -476,6 +492,7 @@
             btSave.TabIndex = 8;
             btSave.Text = "Сохранить";
             btSave.UseVisualStyleBackColor = true;
+            btSave.Click += btSave_Click;
             // 
             // QuizEditorForm
             // 
@@ -540,19 +557,20 @@
         private Button btSave;
         private ListBox listBoxQuestions;
         private GroupBox gQuizList;
-        private Button btAddQuestion;
-        private Button btChangeQuestion;
-        private Button btDeleteQuestion;
+        private Button btnAddQuestion;
+        private Button btnChangeQuestion;
+        private Button btnDeleteQuestion;
         private SplitContainer splitContainer4;
         private FlowLayoutPanel flowLayoutPanel2;
-        private Button btAddAnswer;
-        private Button btChangeAnswer;
-        private Button btDeleteAnswer;
+        private Button btnAddAnswer;
+        private Button btnChangeAnswer;
+        private Button btnDeleteAnswer;
         private SplitContainer splitContainer5;
         private GroupBox gbTextfield;
         private TableLayoutPanel tableLayoutPanel2;
         private Label lbQuestion;
         private TextBox txtQuestionTxt;
         private CheckedListBox checkedListAnswers;
+        private Button btnSaveQuestin;
     }
 }

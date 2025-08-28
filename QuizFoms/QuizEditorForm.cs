@@ -11,6 +11,8 @@ using System.Windows.Forms;
 
 namespace QuizFoms
 {
+    /*win+. - эмодзи*/
+
     public partial class QuizEditorForm : Form
     {
         Quiz quiz;
@@ -55,9 +57,74 @@ namespace QuizFoms
 
         }
 
-        private void label4_Click(object sender, EventArgs e)
+
+        private void btAddQuestion_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var q = new Question("Новый вопрос", new List<string> { "Вариант 1", "Вариант 2", "Вариант 3", "Вариант 4" }, 0);
+                quiz.AddQuestion(q);
+                RefreshQuestions();
+                listBoxQuestions.SelectedItem = q; // сразу выделяем новый вопрос
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
+            catch (InvalidOperationException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btDeleteQuestion_Click(object sender, EventArgs e)
+        {
+            if (listBoxQuestions.SelectedItem is Question q)
+            {
+                quiz.Questions.Remove(q);
+                RefreshQuestions();
+            }
+        }
+
+        private void btChangeQuestion_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+
+        }
+
+        private void btSave_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnDeleteAnswer_Click(object sender, EventArgs e)
+        {
+            //ne sdelano 
+        }
+
+        private void btnSaveQuestin_Click(object sender, EventArgs e)
+        {
+            if (listBoxQuestions.SelectedItem is Question q)
+            {
+                // обновляем текст вопроса
+                q.Text = txtQuestionTxt.Text;
+
+                // обновляем список ответов
+                q.Answers.Clear();
+                q.CorrectIndexes.Clear();
+
+                for (int i = 0; i < checkedListAnswers.Items.Count; i++)
+                {
+                    q.Answers.Add(checkedListAnswers.Items[i].ToString()!);
+
+                    if (checkedListAnswers.GetItemChecked(i))
+                        q.CorrectIndexes.Add(i);
+                }
+
+                RefreshQuestions();
+                listBoxQuestions.SelectedItem = q; // остаёмся на том же вопросе
+            }
         }
     }
 }
