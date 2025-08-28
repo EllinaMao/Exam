@@ -80,15 +80,10 @@ namespace QuizFoms
 
         private void enter_Edditor_Click(object sender, EventArgs e)
         {
-            try
-            {
-
-            throw new NotImplementedException();
-            }
-            catch
-            {
-                MessageBox.Show("Не реализовано");
-            }
+            this.Hide(); // скрываем текущую форму
+            var eddit = new QuizEditMainForm();
+            eddit.ShowDialog();
+            this.Show(); // показываем форму снова после закрытия редактора
         }
     }
 }

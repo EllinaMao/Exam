@@ -21,15 +21,6 @@ namespace QuizFoms
         {
             this.quiz = quiz;
             InitializeComponent();
-            lbControl.Text = $"{quiz.Questions.Count}/{quiz.questionLimit}";
-            btnSave.Enabled = false;
-
-            txtName.Text = quiz.Title;
-            txtDescription.Text = quiz.Description;
-            txtCategory.Text = quiz.Category;
-
-            RefreshQuestions();
-
         }
 
         private void RefreshQuestions()
@@ -41,7 +32,7 @@ namespace QuizFoms
             if (listBoxQuestions.Items.Count > 0)
                 listBoxQuestions.SelectedIndex = 0;
 
-            UpdateControlsState();
+            UpdateSaveButtonState(); // обновляем состояние кнопки
         }
 
         private void listBoxQuestions_SelectedIndexChanged(object sender, EventArgs e)
@@ -61,15 +52,7 @@ namespace QuizFoms
                 }
             }
         }
-        private void UpdateControlsState()
-        {
-            // Обновляем состояние кнопки Сохранить
-            btnSave.Enabled = quiz.Questions.Count == quiz.questionLimit;
 
-            // Обновляем Label с прогрессом
-            lbControl.Text = $"{quiz.Questions.Count}/{quiz.questionLimit}";
-
-        }
 
 
         private void btAddQuestion_Click(object sender, EventArgs e)
@@ -84,8 +67,6 @@ namespace QuizFoms
                 quiz.AddQuestion(q);
                 RefreshQuestions();
                 listBoxQuestions.SelectedItem = q; // сразу выделяем новый вопрос
-                txtQuestionTxt.Text = string.Empty;
-
             }
             catch (ArgumentException ex)
             {
@@ -116,6 +97,16 @@ namespace QuizFoms
                 listBoxQuestions.SelectedItem = q;
             }
         }
+        private void UpdateSaveButtonState()
+        {
+            // Активна только если количество вопросов равно лимиту
+            btSave.Enabled = quiz.Questions.Count == quiz.questionLimit;
+        }
+        private void btSave_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
 
         private void btnDeleteAnswer_Click(object sender, EventArgs e)
         {
@@ -134,6 +125,30 @@ namespace QuizFoms
                     if (q.CorrectIndexes[i] > idx)
                         q.CorrectIndexes[i]--;
                 }
+            }
+        }
+
+        private void btnSaveQuestin_Click(object sender, EventArgs e)
+        {
+            if (listBoxQuestions.SelectedItem is Question q)
+            {
+                // обновляем текст вопроса
+                q.Text = txtQuestionTxt.Text;
+
+                // обновляем список ответов
+                q.Answers.Clear();
+                q.CorrectIndexes.Clear();
+
+                for (int i = 0; i < checkedListAnswers.Items.Count; i++)
+                {
+                    q.Answers.Add(checkedListAnswers.Items[i].ToString()!);
+
+                    if (checkedListAnswers.GetItemChecked(i))
+                        q.CorrectIndexes.Add(i);
+                }
+
+                RefreshQuestions();
+                listBoxQuestions.SelectedItem = q; // остаёмся на том же вопросе
             }
         }
 
@@ -192,37 +207,17 @@ namespace QuizFoms
             }
         }
 
-        private void btnSaveQuestion_Click(object sender, EventArgs e)
-        {
-            if (listBoxQuestions.SelectedItem is Question q)
-            {
-                // обновляем текст вопроса
-                q.Text = txtQuestionTxt.Text;
 
-                // обновляем список ответов
-                q.Answers.Clear();
-                q.CorrectIndexes.Clear();
 
-                for (int i = 0; i < checkedListAnswers.Items.Count; i++)
-                {
-                    q.Answers.Add(checkedListAnswers.Items[i].ToString()!);
 
-                    if (checkedListAnswers.GetItemChecked(i))
-                        q.CorrectIndexes.Add(i);
-                }
 
-                RefreshQuestions();
-                listBoxQuestions.SelectedItem = q; // остаёмся на том же вопросе
-            }
-        }
 
-        private void btSave_Click(object sender, EventArgs e)
-        {
-            quiz.Title = txtName.Text;
-            quiz.Description = txtDescription.Text;
-            quiz.Category = txtCategory.Text;
-            this.DialogResult = DialogResult.OK; // говорим, что всё прошло успешно
-            this.Close(); // закрываем форму
-        }
+
+
+
+
+
+
+
     }
 }

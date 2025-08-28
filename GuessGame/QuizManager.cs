@@ -6,16 +6,21 @@ using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace GuessGame
-{
+{//он статический что бы быть в единственном экземляре
     public static class QuizManager
     {
         public static List<Quiz> AllQuizzes { get; private set; } = new List<Quiz>();
 
+        // Папка для хранения викторин
+        public static string QuizzesFolder => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Quizzes");
+
         public static void AddQuiz(Quiz quiz)
         {
-            if (quiz.Questions.Count != 20)
-                throw new InvalidOperationException("Викторина должна содержать ровно 20 вопросов.");
             AllQuizzes.Add(quiz);
+        }
+        public static void DeleteQuiz(Quiz quiz)
+        {
+            AllQuizzes.Remove(quiz);
         }
 
         public static void LoadAllFromFile(string filePath)
@@ -39,6 +44,7 @@ namespace GuessGame
                 QuizStorage.SaveToFile(quiz, filePath);
             }
         }
+        
 
         public static void SaveAllToFile(string filePath)
         {

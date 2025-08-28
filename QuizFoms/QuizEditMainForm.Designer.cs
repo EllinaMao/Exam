@@ -31,13 +31,14 @@
             splitContainer1 = new SplitContainer();
             qiuzList = new ListBox();
             flowLayoutPanel1 = new FlowLayoutPanel();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
+            btnExit = new Button();
+            bthDelete = new Button();
+            bthEddit = new Button();
+            btnAdd = new Button();
             menuStrip1 = new MenuStrip();
-            сохранитьToolStripMenuItem = new ToolStripMenuItem();
-            выходToolStripMenuItem = new ToolStripMenuItem();
+            filesToolStripMenuItem = new ToolStripMenuItem();
             saveToFileToolStripMenuItem = new ToolStripMenuItem();
+            loadFromFileToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -77,9 +78,10 @@
             // flowLayoutPanel1
             // 
             flowLayoutPanel1.BackColor = SystemColors.Control;
-            flowLayoutPanel1.Controls.Add(button1);
-            flowLayoutPanel1.Controls.Add(button2);
-            flowLayoutPanel1.Controls.Add(button3);
+            flowLayoutPanel1.Controls.Add(btnExit);
+            flowLayoutPanel1.Controls.Add(bthDelete);
+            flowLayoutPanel1.Controls.Add(bthEddit);
+            flowLayoutPanel1.Controls.Add(btnAdd);
             flowLayoutPanel1.Dock = DockStyle.Fill;
             flowLayoutPanel1.FlowDirection = FlowDirection.RightToLeft;
             flowLayoutPanel1.Location = new Point(0, 0);
@@ -87,61 +89,78 @@
             flowLayoutPanel1.Size = new Size(800, 35);
             flowLayoutPanel1.TabIndex = 0;
             // 
-            // button1
+            // btnExit
             // 
-            button1.Location = new Point(722, 3);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 0;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
+            btnExit.Location = new Point(722, 3);
+            btnExit.Name = "btnExit";
+            btnExit.Size = new Size(75, 23);
+            btnExit.TabIndex = 0;
+            btnExit.Text = "Выйти";
+            btnExit.UseVisualStyleBackColor = true;
+            btnExit.Click += saveToFileToolStripMenuItem_Click;
+            btnExit.Click += btnExit_Click;
+
             // 
-            // button2
+            // bthDelete
             // 
-            button2.Location = new Point(641, 3);
-            button2.Name = "button2";
-            button2.Size = new Size(75, 23);
-            button2.TabIndex = 1;
-            button2.Text = "button2";
-            button2.UseVisualStyleBackColor = true;
+            bthDelete.Location = new Point(641, 3);
+            bthDelete.Name = "bthDelete";
+            bthDelete.Size = new Size(75, 23);
+            bthDelete.TabIndex = 1;
+            bthDelete.Text = "➖";
+            bthDelete.UseVisualStyleBackColor = true;
+            bthDelete.Click += bthDelete_Click;
             // 
-            // button3
+            // bthEddit
             // 
-            button3.Location = new Point(560, 3);
-            button3.Name = "button3";
-            button3.Size = new Size(75, 23);
-            button3.TabIndex = 2;
-            button3.Text = "button3";
-            button3.UseVisualStyleBackColor = true;
+            bthEddit.Location = new Point(560, 3);
+            bthEddit.Name = "bthEddit";
+            bthEddit.Size = new Size(75, 23);
+            bthEddit.TabIndex = 3;
+            bthEddit.Text = "✏";
+            bthEddit.UseVisualStyleBackColor = true;
+            bthEddit.Click += bthEddit_Click;
+            // 
+            // btnAdd
+            // 
+            btnAdd.Location = new Point(479, 3);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(75, 23);
+            btnAdd.TabIndex = 2;
+            btnAdd.Text = "➕";
+            btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += btnAdd_Click;
             // 
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { saveToFileToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { filesToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(800, 24);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
-            // сохранитьToolStripMenuItem
+            // filesToolStripMenuItem
             // 
-            сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
-            сохранитьToolStripMenuItem.Size = new Size(180, 22);
-            сохранитьToolStripMenuItem.Text = "Сохранить";
-            // 
-            // выходToolStripMenuItem
-            // 
-            выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-            выходToolStripMenuItem.Size = new Size(180, 22);
-            выходToolStripMenuItem.Text = "Выход";
+            filesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { saveToFileToolStripMenuItem, loadFromFileToolStripMenuItem });
+            filesToolStripMenuItem.Name = "filesToolStripMenuItem";
+            filesToolStripMenuItem.Size = new Size(57, 20);
+            filesToolStripMenuItem.Text = "Файлы";
             // 
             // saveToFileToolStripMenuItem
             // 
-            saveToFileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { сохранитьToolStripMenuItem, выходToolStripMenuItem });
             saveToFileToolStripMenuItem.Name = "saveToFileToolStripMenuItem";
-            saveToFileToolStripMenuItem.Size = new Size(57, 20);
-            saveToFileToolStripMenuItem.Text = "Файлы";
+            saveToFileToolStripMenuItem.Size = new Size(180, 22);
+            saveToFileToolStripMenuItem.Text = "Сохранить в файл";
+            saveToFileToolStripMenuItem.Click += saveToFileToolStripMenuItem_Click;
+            // 
+            // loadFromFileToolStripMenuItem
+            // 
+            loadFromFileToolStripMenuItem.Name = "loadFromFileToolStripMenuItem";
+            loadFromFileToolStripMenuItem.Size = new Size(180, 22);
+            loadFromFileToolStripMenuItem.Text = "Загрузить с файла";
+            loadFromFileToolStripMenuItem.Click += loadFromFileToolStripMenuItem_Click;
             // 
             // QuizEditMainForm
             // 
@@ -169,12 +188,13 @@
         private SplitContainer splitContainer1;
         private ListBox qiuzList;
         private FlowLayoutPanel flowLayoutPanel1;
-        private Button button1;
-        private Button button2;
-        private Button button3;
+        private Button btnExit;
+        private Button bthDelete;
+        private Button btnAdd;
         private MenuStrip menuStrip1;
+        private ToolStripMenuItem filesToolStripMenuItem;
         private ToolStripMenuItem saveToFileToolStripMenuItem;
-        private ToolStripMenuItem сохранитьToolStripMenuItem;
-        private ToolStripMenuItem выходToolStripMenuItem;
+        private ToolStripMenuItem loadFromFileToolStripMenuItem;
+        private Button bthEddit;
     }
 }
