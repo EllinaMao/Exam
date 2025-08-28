@@ -18,6 +18,7 @@ namespace GuessGame
         [JsonPropertyName("Вопросы и варианты ответов")]
         public List<Question> Questions { get; set; }
 
+        public int questionLimit { get; } = 20;
         public Quiz()
         {
             Title = string.Empty;
@@ -34,13 +35,35 @@ namespace GuessGame
             Questions = questions;
         }
 
-        public void AddQuestion(Question q) => Questions.Add(q);
-
-        public void RemoveQuestion(int index)
+        public void AddQuestion(Question q)
         {
-            if (index >= 0 && index < Questions.Count)
-                Questions.RemoveAt(index);
+            if (Questions.Count == questionLimit)
+            {
+                throw new InvalidOperationException($"Нельзя добавить больше {questionLimit} вопросов");
+            }
+            if(q == null)
+            {
+                throw new ArgumentNullException(nameof(q), "Вопрос не может быть null");
+            }
+            if (string.IsNullOrWhiteSpace(q.Text))
+            {
+                throw new ArgumentException("Текст вопроса не может быть пустым или состоять только из пробелов", nameof(q));
+            }
+            if (q.Answers == null || q.Answers.Count < 4)
+            {
+                throw new ArgumentException("Вопрос должен содержать четыре варианта ответа", nameof(q));
+            }
+            if (q.CorrectIndexes == null || q.CorrectIndexes.Count == 0 || q.CorrectIndexes.Any(i => i < 0 || i >= q.Answers.Count))
+            {
+                throw new ArgumentException("Вопрос должен содержать хотя бы один правильный ответ, и индексы правильных ответов должны быть в пределах количества вариантов ответа", nameof(q));
+            }
+            if (Questions.Any(existingQ => existingQ.Text.Equals(q.Text, StringComparison.OrdinalIgnoreCase)))
+            {
+                throw new InvalidOperationException("Вопрос с таким текстом уже существует в викторине");
+            }
+            Questions.Add(q);
         }
+
 
         public void EditQuestion(int index, Question newQuestion)
         {
@@ -58,5 +81,11 @@ namespace GuessGame
                 Questions.Insert(newIndex, q);
             }
         }
+
+
+
+
+
+
     }
 }
