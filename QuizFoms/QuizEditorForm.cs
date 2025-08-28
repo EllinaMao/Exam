@@ -10,21 +10,11 @@ using System.Windows.Forms;
 
 namespace QuizFoms
 {
-    public partial class Form1 : Form
+    public partial class QuizEditorForm : Form
     {
-        public Form1()
+        public QuizEditorForm()
         {
             InitializeComponent();
-        }
-
-        private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
-        {
-
-        }
-
-        private void saveToFileToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

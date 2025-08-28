@@ -13,6 +13,8 @@ namespace GuessGame
 
         public static void AddQuiz(Quiz quiz)
         {
+            if (quiz.Questions.Count != 20)
+                throw new InvalidOperationException("Викторина должна содержать ровно 20 вопросов.");
             AllQuizzes.Add(quiz);
         }
 

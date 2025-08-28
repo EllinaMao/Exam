@@ -1,6 +1,6 @@
 ﻿namespace QuizFoms
 {
-    partial class Form1
+    partial class QuizEditMainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -68,7 +68,6 @@
             saveToFileToolStripMenuItem.Name = "saveToFileToolStripMenuItem";
             saveToFileToolStripMenuItem.Size = new Size(70 , 24);
             saveToFileToolStripMenuItem.Text = "Файлы";
-            saveToFileToolStripMenuItem.Click += saveToFileToolStripMenuItem_Click;
             // 
             // создатьНовуюВикторинуToolStripMenuItem
             // 
@@ -108,7 +107,6 @@
             splitContainer1.SplitterDistance = 730;
             splitContainer1.SplitterWidth = 5;
             splitContainer1.TabIndex = 1;
-            splitContainer1.SplitterMoved += splitContainer1_SplitterMoved;
             // 
             // qiuzList
             // 
