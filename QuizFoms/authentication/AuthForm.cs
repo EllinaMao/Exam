@@ -1,4 +1,5 @@
-﻿using login_logic;
+﻿using GuessGame;
+using login_logic;
 using System.Windows.Forms;
 
 namespace QuizFoms
@@ -7,9 +8,12 @@ namespace QuizFoms
     {
         AuthService authService;
         User? ThisUser { get; set; }
-
+        private string filePathQuiz = Path.Combine(QuizManager.QuizzesFolder, "allQuizzes.json");
         public AuthForm()
         {
+            if (!Directory.Exists(QuizManager.QuizzesFolder))
+                Directory.CreateDirectory(QuizManager.QuizzesFolder);
+
             this.StartPosition = FormStartPosition.CenterScreen;
             authService = new();
             authService.LoadUsers();
@@ -68,15 +72,16 @@ namespace QuizFoms
         private void enterGame_Click(object sender, EventArgs e)
         {
             this.Hide(); // скрываем текущую форму
-            var game = new MenuForm(ThisUser);
+            var game = new MenuForm(ThisUser, filePathQuiz);
             game.ShowDialog();
             this.Show(); // показываем форму снова после закрытия редактора
+            authService.SaveUsers();
         }
 
         private void enter_Edditor_Click(object sender, EventArgs e)
         {
             this.Hide(); // скрываем текущую форму
-            var eddit = new QuizEditMainForm();
+            var eddit = new QuizEditMainForm(filePathQuiz);
             eddit.ShowDialog();
             this.Show(); // показываем форму снова после закрытия редактора
         }

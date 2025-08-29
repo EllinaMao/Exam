@@ -1,29 +1,35 @@
 ﻿using GuessGame;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using GuessGame;
-
+using login_logic;
 namespace QuizFoms
 {
     public partial class SelectQuizForm : Form
     {
-        private string filePath = Path.Combine(QuizManager.QuizzesFolder, "allQuizzes.json");
+        User ThisUser { get; set; }
+        private readonly QuizResultService resultService;
+        private string filePathResult;
+        private string filePathQuiz;
 
-        public SelectQuizForm()
+        public SelectQuizForm(User user, string filepathQ, string filepathR)
         {
-            if (!Directory.Exists(QuizManager.QuizzesFolder))
-                Directory.CreateDirectory(QuizManager.QuizzesFolder);
+            filePathQuiz= filepathQ;
+            filePathResult = filepathR; 
             this.StartPosition = FormStartPosition.CenterScreen;
+            ThisUser = user;
+            resultService = new QuizResultService();
+
             InitializeComponent();
-            QuizManager.LoadAllFromFile(filePath);
+            try
+            {
+            resultService.LoadFromFile(filePathResult);
+
+            QuizManager.LoadAllFromFile(filePathQuiz);
             RefreshQuizList();
+            }
+            catch
+            {
+                MessageBox.Show("Проблема с загрузкой викторины");
+                this.Close();
+            }
         }
         private void RefreshQuizList()
         {
@@ -31,16 +37,12 @@ namespace QuizFoms
             listBox1.DataSource = QuizManager.AllQuizzes; // обращаемся к статическому классу
             listBox1.DisplayMember = "Title"; // показываем название викторины
         }
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void btnStart_Click(object sender, EventArgs e)
         {
             if (listBox1.SelectedItem is Quiz quiz)
             {
-            var game = new GameForm(quiz);
+            var game = new GameForm(quiz, ThisUser.Login, resultService, filePathResult);
             this.Hide();
             game.ShowDialog();
             this.Show();

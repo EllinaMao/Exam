@@ -31,11 +31,12 @@
             splitContainer1 = new SplitContainer();
             userGreetinglb = new Label();
             tableLayoutPanel1 = new TableLayoutPanel();
+            shuffleBtn = new Button();
+            editBtn = new Button();
+            settingsBtn = new Button();
+            Top20Btn = new Button();
+            myResBtn = new Button();
             btnNewQuiz = new Button();
-            btnMyResults = new Button();
-            btnTop = new Button();
-            btnSettings = new Button();
-            btnExit = new Button();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -59,8 +60,8 @@
             // 
             splitContainer1.Panel2.BackColor = Color.Wheat;
             splitContainer1.Panel2.Controls.Add(tableLayoutPanel1);
-            splitContainer1.Size = new Size(299, 404);
-            splitContainer1.SplitterDistance = 46;
+            splitContainer1.Size = new Size(318, 428);
+            splitContainer1.SplitterDistance = 38;
             splitContainer1.TabIndex = 0;
             // 
             // userGreetinglb
@@ -77,21 +78,85 @@
             // 
             tableLayoutPanel1.ColumnCount = 1;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.Controls.Add(shuffleBtn, 0, 1);
+            tableLayoutPanel1.Controls.Add(editBtn, 0, 5);
+            tableLayoutPanel1.Controls.Add(settingsBtn, 0, 4);
+            tableLayoutPanel1.Controls.Add(Top20Btn, 0, 3);
+            tableLayoutPanel1.Controls.Add(myResBtn, 0, 2);
             tableLayoutPanel1.Controls.Add(btnNewQuiz, 0, 0);
-            tableLayoutPanel1.Controls.Add(btnMyResults, 0, 1);
-            tableLayoutPanel1.Controls.Add(btnTop, 0, 2);
-            tableLayoutPanel1.Controls.Add(btnSettings, 0, 3);
-            tableLayoutPanel1.Controls.Add(btnExit, 0, 4);
             tableLayoutPanel1.Location = new Point(51, 37);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 5;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
-            tableLayoutPanel1.Size = new Size(200, 264);
+            tableLayoutPanel1.RowCount = 6;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
+            tableLayoutPanel1.Size = new Size(220, 300);
             tableLayoutPanel1.TabIndex = 0;
+            // 
+            // shuffleBtn
+            // 
+            shuffleBtn.BackColor = Color.WhiteSmoke;
+            shuffleBtn.Dock = DockStyle.Fill;
+            shuffleBtn.FlatStyle = FlatStyle.Flat;
+            shuffleBtn.Location = new Point(3, 53);
+            shuffleBtn.Name = "shuffleBtn";
+            shuffleBtn.Size = new Size(214, 44);
+            shuffleBtn.TabIndex = 19;
+            shuffleBtn.Text = "Рандомная викторина";
+            shuffleBtn.UseVisualStyleBackColor = false;
+            shuffleBtn.Click += shuffleBtn_Click;
+            // 
+            // editBtn
+            // 
+            editBtn.BackColor = Color.WhiteSmoke;
+            editBtn.Dock = DockStyle.Fill;
+            editBtn.FlatStyle = FlatStyle.Flat;
+            editBtn.Location = new Point(3, 253);
+            editBtn.Name = "editBtn";
+            editBtn.Size = new Size(214, 44);
+            editBtn.TabIndex = 18;
+            editBtn.Text = "Выход";
+            editBtn.UseVisualStyleBackColor = false;
+            editBtn.Click += editBtn_Click;
+            // 
+            // settingsBtn
+            // 
+            settingsBtn.BackColor = Color.WhiteSmoke;
+            settingsBtn.Dock = DockStyle.Fill;
+            settingsBtn.FlatStyle = FlatStyle.Flat;
+            settingsBtn.Location = new Point(3, 203);
+            settingsBtn.Name = "settingsBtn";
+            settingsBtn.Size = new Size(214, 44);
+            settingsBtn.TabIndex = 16;
+            settingsBtn.Text = "Настройки";
+            settingsBtn.UseVisualStyleBackColor = false;
+            // 
+            // Top20Btn
+            // 
+            Top20Btn.BackColor = Color.WhiteSmoke;
+            Top20Btn.Dock = DockStyle.Fill;
+            Top20Btn.FlatStyle = FlatStyle.Flat;
+            Top20Btn.Location = new Point(3, 153);
+            Top20Btn.Name = "Top20Btn";
+            Top20Btn.Size = new Size(214, 44);
+            Top20Btn.TabIndex = 14;
+            Top20Btn.Text = "Топ-20 игроков";
+            Top20Btn.UseVisualStyleBackColor = false;
+            // 
+            // myResBtn
+            // 
+            myResBtn.BackColor = Color.WhiteSmoke;
+            myResBtn.Dock = DockStyle.Fill;
+            myResBtn.FlatStyle = FlatStyle.Flat;
+            myResBtn.Location = new Point(3, 103);
+            myResBtn.Name = "myResBtn";
+            myResBtn.Size = new Size(214, 44);
+            myResBtn.TabIndex = 13;
+            myResBtn.Text = "Мои результаты";
+            myResBtn.UseVisualStyleBackColor = false;
             // 
             // btnNewQuiz
             // 
@@ -100,65 +165,17 @@
             btnNewQuiz.FlatStyle = FlatStyle.Flat;
             btnNewQuiz.Location = new Point(3, 3);
             btnNewQuiz.Name = "btnNewQuiz";
-            btnNewQuiz.Size = new Size(194, 46);
+            btnNewQuiz.Size = new Size(214, 44);
             btnNewQuiz.TabIndex = 0;
             btnNewQuiz.Text = "Новая викторина";
             btnNewQuiz.UseVisualStyleBackColor = false;
             btnNewQuiz.Click += btnNewQuiz_Click;
             // 
-            // btnMyResults
-            // 
-            btnMyResults.BackColor = Color.WhiteSmoke;
-            btnMyResults.Dock = DockStyle.Fill;
-            btnMyResults.FlatStyle = FlatStyle.Flat;
-            btnMyResults.Location = new Point(3, 55);
-            btnMyResults.Name = "btnMyResults";
-            btnMyResults.Size = new Size(194, 46);
-            btnMyResults.TabIndex = 1;
-            btnMyResults.Text = "Мои результаты";
-            btnMyResults.UseVisualStyleBackColor = false;
-            // 
-            // btnTop
-            // 
-            btnTop.BackColor = Color.WhiteSmoke;
-            btnTop.Dock = DockStyle.Fill;
-            btnTop.FlatStyle = FlatStyle.Flat;
-            btnTop.Location = new Point(3, 107);
-            btnTop.Name = "btnTop";
-            btnTop.Size = new Size(194, 46);
-            btnTop.TabIndex = 2;
-            btnTop.Text = "Топ-20 игроков";
-            btnTop.UseVisualStyleBackColor = false;
-            // 
-            // btnSettings
-            // 
-            btnSettings.BackColor = Color.WhiteSmoke;
-            btnSettings.Dock = DockStyle.Fill;
-            btnSettings.FlatStyle = FlatStyle.Flat;
-            btnSettings.Location = new Point(3, 159);
-            btnSettings.Name = "btnSettings";
-            btnSettings.Size = new Size(194, 46);
-            btnSettings.TabIndex = 3;
-            btnSettings.Text = "Настройки";
-            btnSettings.UseVisualStyleBackColor = false;
-            // 
-            // btnExit
-            // 
-            btnExit.BackColor = Color.WhiteSmoke;
-            btnExit.Dock = DockStyle.Fill;
-            btnExit.FlatStyle = FlatStyle.Flat;
-            btnExit.Location = new Point(3, 211);
-            btnExit.Name = "btnExit";
-            btnExit.Size = new Size(194, 50);
-            btnExit.TabIndex = 4;
-            btnExit.Text = "Выход";
-            btnExit.UseVisualStyleBackColor = false;
-            // 
             // MenuForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(299, 404);
+            ClientSize = new Size(318, 428);
             Controls.Add(splitContainer1);
             Name = "MenuForm";
             Text = "MenuForm";
@@ -177,9 +194,10 @@
         private Label userGreetinglb;
         private TableLayoutPanel tableLayoutPanel1;
         private Button btnNewQuiz;
-        private Button btnMyResults;
-        private Button btnTop;
-        private Button btnSettings;
-        private Button btnExit;
+        private Button Top20Btn;
+        private Button myResBtn;
+        private Button shuffleBtn;
+        private Button editBtn;
+        private Button settingsBtn;
     }
 }

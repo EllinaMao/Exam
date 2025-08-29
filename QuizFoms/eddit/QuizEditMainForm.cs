@@ -15,14 +15,10 @@ namespace QuizFoms
 
     public partial class QuizEditMainForm : Form
     {
-        private string filePath = Path.Combine(QuizManager.QuizzesFolder, "allQuizzes.json");
-
-        public QuizEditMainForm()
+        string filePath;
+        public QuizEditMainForm(string filePath_)
         {
-            if (!Directory.Exists(QuizManager.QuizzesFolder))
-                Directory.CreateDirectory(QuizManager.QuizzesFolder);
-            this.StartPosition = FormStartPosition.CenterScreen;
-
+            filePath = filePath_;
             InitializeComponent();
             QuizManager.LoadAllFromFile(filePath);
             RefreshQuizList();

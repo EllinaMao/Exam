@@ -1,21 +1,20 @@
-﻿using login_logic;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using GuessGame;
+using login_logic;
+
 
 namespace QuizFoms
 {
     public partial class MenuForm : Form
     {
-        User? user { get; set; }
-        public MenuForm(User user_)
+        private User? user { get; set; }
+        private string filepathQuiz;
+        private string filePathResult = Path.Combine(QuizResultService.QuizzesFolder, "Allresults.json");
+
+        public MenuForm(User user_, string quiz)
         {
+            filepathQuiz = quiz;
+            if (!Directory.Exists(QuizResultService.QuizzesFolder))
+                Directory.CreateDirectory(QuizManager.QuizzesFolder);
             this.StartPosition = FormStartPosition.CenterScreen;
             this.user = user_;
             InitializeComponent();
@@ -25,8 +24,21 @@ namespace QuizFoms
         private void btnNewQuiz_Click(object sender, EventArgs e)
         {
             this.Hide();
-            var game = new SelectQuizForm(user);
+            var game = new SelectQuizForm(user, filepathQuiz, filePathResult);
+            game.ShowDialog();
             this.Show();
+        }
+
+
+        private void editBtn_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Пока!");
+            this.Close();
+        }
+
+        private void shuffleBtn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
