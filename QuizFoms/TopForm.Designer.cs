@@ -19,7 +19,6 @@
         {
             flowLayoutPanelBottom = new FlowLayoutPanel();
             btnClose = new Button();
-            btnShow = new Button();
             panelTop = new Panel();
             lblTitle = new Label();
             tableLayoutPanel1 = new TableLayoutPanel();
@@ -35,7 +34,6 @@
             // flowLayoutPanelBottom
             // 
             flowLayoutPanelBottom.Controls.Add(btnClose);
-            flowLayoutPanelBottom.Controls.Add(btnShow);
             flowLayoutPanelBottom.Dock = DockStyle.Bottom;
             flowLayoutPanelBottom.FlowDirection = FlowDirection.RightToLeft;
             flowLayoutPanelBottom.Location = new Point(0, 419);
@@ -52,16 +50,6 @@
             btnClose.Text = "Закрыть";
             btnClose.UseVisualStyleBackColor = true;
             btnClose.Click += btnClose_Click;
-            // 
-            // btnShow
-            // 
-            btnShow.Location = new Point(241, 3);
-            btnShow.Name = "btnShow";
-            btnShow.Size = new Size(75, 23);
-            btnShow.TabIndex = 1;
-            btnShow.Text = "Показать";
-            btnShow.UseVisualStyleBackColor = true;
-            btnShow.Click += btnShow_Click;
             // 
             // panelTop
             // 
@@ -158,7 +146,6 @@
 
         private FlowLayoutPanel flowLayoutPanelBottom;
         private Button btnClose;
-        private Button btnShow;
         private Panel panelTop;
         private Label lblTitle;
         private TableLayoutPanel tableLayoutPanel1;

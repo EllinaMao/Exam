@@ -1,14 +1,5 @@
 ﻿using GuessGame;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace QuizFoms
 {
@@ -16,6 +7,9 @@ namespace QuizFoms
     {
         public TopForm()
         {
+            QuizResultService.LoadFromFile(QuizResultService.FilePath);
+            QuizManager.LoadAllFromFile(QuizManager.Filepath);
+
             InitializeComponent();
             var quizTitles = QuizResultService
                 .GetAllResults()
@@ -50,30 +44,6 @@ namespace QuizFoms
 
             dgvTopPlayers.DataSource = topPlayers;
         }
-        private void btnShow_Click(object sender, EventArgs e)
-        {
-            if (cbQuizzes.SelectedItem == null)
-            {
-                MessageBox.Show("Выберите викторину!");
-                return;
-
-            }
-            string? quizTitle = cbQuizzes.SelectedItem.ToString();
-
-            // Берём топ-20 игроков через твой сервис
-            var topPlayers = QuizResultService.GetTopResults(quizTitle, 20)
-                .Select((r, index) => new
-                {
-                    Место = index + 1,
-                    Игрок = r.UserLogin,
-                    Очки = r.Score,
-                    Дата = r.Date.ToString("dd.MM.yyyy HH:mm")
-                })
-                .ToList();
-
-            dgvTopPlayers.DataSource = topPlayers;
-        }
-
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();

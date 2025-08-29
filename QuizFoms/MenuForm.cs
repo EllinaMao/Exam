@@ -49,7 +49,13 @@ namespace QuizFoms
 
         private void Top20Btn_Click(object sender, EventArgs e)
         {
+            this.Hide();
+            using (var selectForm = new TopForm())
+            {
+                selectForm.ShowDialog();
 
+            }
+            this.Show();
         }
 
         private void myResBtn_Click(object sender, EventArgs e)
