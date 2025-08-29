@@ -67,15 +67,10 @@ namespace QuizFoms
 
         private void enterGame_Click(object sender, EventArgs e)
         {
-            try
-            {
-
-                throw new NotImplementedException();
-            }
-            catch
-            {
-                MessageBox.Show("Не реализовано");
-            }
+            this.Hide(); // скрываем текущую форму
+            var game = new MenuForm(ThisUser);
+            game.ShowDialog();
+            this.Show(); // показываем форму снова после закрытия редактора
         }
 
         private void enter_Edditor_Click(object sender, EventArgs e)

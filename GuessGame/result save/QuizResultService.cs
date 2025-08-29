@@ -13,6 +13,11 @@ namespace GuessGame
         public void AddResult(string login , QuizResult result) =>
             results.Add(result);
 
+        //public void SortBy()
+        //{
+        //    results.Sort(resi)
+        //}
+
         public List<QuizResult> GetResultsByUser(string login) =>
             results.Where(r => r.UserLogin == login).ToList();
 

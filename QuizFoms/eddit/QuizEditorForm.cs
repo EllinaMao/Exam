@@ -19,6 +19,8 @@ namespace QuizFoms
 
         public QuizEditorForm(Quiz quiz)
         {
+            this.StartPosition = FormStartPosition.CenterScreen;
+
             this.quiz = quiz;
             InitializeComponent();
             lbControl.Text = $"{quiz.Questions.Count}/{quiz.questionLimit}";

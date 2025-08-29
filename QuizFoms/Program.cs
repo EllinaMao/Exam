@@ -1,4 +1,7 @@
-﻿namespace QuizFoms
+﻿using GuessGame;
+using static GuessGame.ForTests;
+
+namespace QuizFoms
 {
     internal static class Program
     {

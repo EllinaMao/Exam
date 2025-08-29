@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GuessGame;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using GuessGame;
+//using static GuessGame.ForTests;//файл с вопросами для викторины что б вручную не заполнять
 
 namespace QuizFoms
 {
@@ -20,6 +21,7 @@ namespace QuizFoms
         {
             if (!Directory.Exists(QuizManager.QuizzesFolder))
                 Directory.CreateDirectory(QuizManager.QuizzesFolder);
+            this.StartPosition = FormStartPosition.CenterScreen;
 
             InitializeComponent();
             QuizManager.LoadAllFromFile(filePath);
@@ -44,6 +46,8 @@ namespace QuizFoms
             // Открываем редактор
             var editor = new QuizEditorForm(quiz);
             editor.ShowDialog();
+            RefreshQuizList();
+
         }
 
         private void bthDelete_Click(object sender, EventArgs e)
@@ -52,11 +56,6 @@ namespace QuizFoms
             {
                 // Удаляем из списка всех викторин
                 QuizManager.AllQuizzes.Remove(quiz);
-
-                // Можно также удалить файл викторины с диска
-                string filePath = Path.Combine(QuizManager.QuizzesFolder, quiz.Title + ".json");
-                if (File.Exists(filePath))
-                    File.Delete(filePath);
 
                 // Обновляем ListBox
                 qiuzList.DataSource = null;
@@ -85,7 +84,6 @@ namespace QuizFoms
 
         private void loadFromFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
             try
             {
                 QuizManager.LoadAllFromFile(filePath);
