@@ -5,30 +5,23 @@ namespace QuizFoms
     public partial class SelectQuizForm : Form
     {
         User ThisUser { get; set; }
-        private readonly QuizResultService resultService;
-        private string filePathResult;
-        private string filePathQuiz;
 
-        public SelectQuizForm(User user, string filepathQ, string filepathR)
+        public SelectQuizForm(User user)
         {
-            filePathQuiz= filepathQ;
-            filePathResult = filepathR; 
             this.StartPosition = FormStartPosition.CenterScreen;
             ThisUser = user;
-            resultService = new QuizResultService();
 
             InitializeComponent();
             try
             {
-            resultService.LoadFromFile(filePathResult);
+                QuizResultService.LoadFromFile(QuizResultService.FilePath);
 
-            QuizManager.LoadAllFromFile(filePathQuiz);
-            RefreshQuizList();
+                QuizManager.LoadAllFromFile(QuizManager.Filepath);
+                RefreshQuizList();
             }
             catch
             {
                 MessageBox.Show("Проблема с загрузкой викторины");
-                this.Close();
             }
         }
         private void RefreshQuizList()
@@ -42,10 +35,10 @@ namespace QuizFoms
         {
             if (listBox1.SelectedItem is Quiz quiz)
             {
-            var game = new GameForm(quiz, ThisUser.Login, resultService, filePathResult);
-            this.Hide();
-            game.ShowDialog();
-            this.Show();
+                var game = new GameForm(quiz, ThisUser.Login);
+                this.Hide();
+                game.ShowDialog();
+                this.Show();
 
             }
         }
@@ -53,6 +46,32 @@ namespace QuizFoms
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void randomBtn_Click(object sender, EventArgs e)
+        {
+            var shuffledQuiz = new Quiz
+            {
+                Title = "Смешанная викторина",
+                Description = "Вопросы из всех разделов",
+                Category = "Mixed"
+            };
+            var allQuestions = QuizManager.AllQuizzes
+            .SelectMany(q => q.Questions)
+            .ToList();
+            var rnd = new Random();
+            var randomQuestions = allQuestions.OrderBy(q => rnd.Next())
+                                              .Take(shuffledQuiz.questionLimit)
+                                              .ToList();
+
+            shuffledQuiz.Questions = randomQuestions;
+
+            var game = new GameForm(shuffledQuiz, ThisUser.Login);
+            this.Hide();
+            game.ShowDialog();
+            this.Show();
+
+
         }
     }
 }

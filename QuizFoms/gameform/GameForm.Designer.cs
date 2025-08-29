@@ -32,9 +32,9 @@
             Next = new Button();
             panel2 = new Panel();
             tableLayoutPanel1 = new TableLayoutPanel();
+            questionNumberLb = new Label();
             questionTextLb = new Label();
             checkedListBox1 = new CheckedListBox();
-            questionNumberLb = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
@@ -83,6 +83,16 @@
             tableLayoutPanel1.Size = new Size(527, 49);
             tableLayoutPanel1.TabIndex = 0;
             // 
+            // questionNumberLb
+            // 
+            questionNumberLb.AutoSize = true;
+            questionNumberLb.Dock = DockStyle.Left;
+            questionNumberLb.Location = new Point(3, 0);
+            questionNumberLb.Name = "questionNumberLb";
+            questionNumberLb.Size = new Size(110, 24);
+            questionNumberLb.TabIndex = 2;
+            questionNumberLb.Text = "Я - номер вопроса";
+            // 
             // questionTextLb
             // 
             questionTextLb.AutoSize = true;
@@ -101,16 +111,6 @@
             checkedListBox1.Name = "checkedListBox1";
             checkedListBox1.Size = new Size(527, 361);
             checkedListBox1.TabIndex = 3;
-            // 
-            // questionNumberLb
-            // 
-            questionNumberLb.AutoSize = true;
-            questionNumberLb.Dock = DockStyle.Left;
-            questionNumberLb.Location = new Point(3, 0);
-            questionNumberLb.Name = "questionNumberLb";
-            questionNumberLb.Size = new Size(110, 24);
-            questionNumberLb.TabIndex = 2;
-            questionNumberLb.Text = "Я - номер вопроса";
             // 
             // GameForm
             // 

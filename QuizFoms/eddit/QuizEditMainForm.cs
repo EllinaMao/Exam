@@ -15,12 +15,10 @@ namespace QuizFoms
 
     public partial class QuizEditMainForm : Form
     {
-        string filePath;
-        public QuizEditMainForm(string filePath_)
+        public QuizEditMainForm()
         {
-            filePath = filePath_;
             InitializeComponent();
-            QuizManager.LoadAllFromFile(filePath);
+            QuizManager.LoadAllFromFile(QuizManager.Filepath);
             RefreshQuizList();
         }
         private void RefreshQuizList()
@@ -69,7 +67,7 @@ namespace QuizFoms
         {
             try
             {
-                QuizManager.SaveAllToFile(filePath);
+                QuizManager.SaveAllToFile(QuizManager.Filepath);
                 MessageBox.Show("Сохранено!");
             }
             catch (Exception ex)
@@ -82,7 +80,7 @@ namespace QuizFoms
         {
             try
             {
-                QuizManager.LoadAllFromFile(filePath);
+                QuizManager.LoadAllFromFile(QuizManager.Filepath);
                 RefreshQuizList();
             }
             catch (Exception ex)

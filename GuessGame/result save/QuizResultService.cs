@@ -7,17 +7,28 @@ using System.Threading.Tasks;
 
 namespace GuessGame
 {
-    public class QuizResultService
+    public static class QuizResultService
     {
-        private List<QuizResult> results = new();
-        public static string QuizzesFolder => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Results");
-        public void AddResult(string login , QuizResult result) =>
+        private static List<QuizResult> results = new();
+        public static string QuizzesFolder
+        {
+            get
+            {
+                var folder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Results");
+                if (!Directory.Exists(folder))
+                    Directory.CreateDirectory(folder);
+                return folder;
+            }
+        }
+        public static string FilePath => Path.Combine(QuizzesFolder, "AllResults.json");
+
+        public static void AddResult(string login , QuizResult result) =>
             results.Add(result);
 
-        public List<QuizResult> GetResultsByUser(string login) =>
+        public static List<QuizResult> GetResultsByUser(string login) =>
             results.Where(r => r.UserLogin == login).ToList();
 
-        public int GetPlace(string login, QuizResult result)
+        public static int GetPlace(string login, QuizResult result)
         {
             var top = results
                 .Where(r => r.QuizTitle == result.QuizTitle)
@@ -29,7 +40,7 @@ namespace GuessGame
         }
 
 
-        public List<QuizResult> GetTopResults(string quizTitle , int top = 20) =>
+        public static List<QuizResult> GetTopResults(string quizTitle , int top = 20) =>
             results
                 .Where(r => r.QuizTitle == quizTitle)
                 .OrderByDescending(r => r.Score)
@@ -37,25 +48,19 @@ namespace GuessGame
                 .ToList();
 
         //сохранение
-        public void SaveToFile(string filePath)
+        public static void SaveToFile(string filePath)
         {
             var json = JsonSerializer.Serialize(results, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(filePath, json);
         }
 
-        // Загрузка из файла
-        public void LoadFromFile(string filePath)
+        // Загрузка из файла. Я оставила путь потому что функция уже используется и я не хочу ее переписывать
+        public static void LoadFromFile(string filePath)
         {
-            // Создаём папку, если её нет
-            var folder = Path.GetDirectoryName(filePath);
-            if (!Directory.Exists(folder))
-                Directory.CreateDirectory(folder);
-
-            // Если файла нет — просто создаём пустой список
-            if (!File.Exists(filePath))
+            if (!File.Exists(FilePath))
             {
                 results = new List<QuizResult>();
-                SaveToFile(filePath); // чтобы файл появился
+                SaveToFile(filePath);
                 return;
             }
 

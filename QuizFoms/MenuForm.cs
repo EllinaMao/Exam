@@ -7,14 +7,9 @@ namespace QuizFoms
     public partial class MenuForm : Form
     {
         private User? user { get; set; }
-        private string filepathQuiz;
-        private string filePathResult = Path.Combine(QuizResultService.QuizzesFolder, "Allresults.json");
 
-        public MenuForm(User user_, string quiz)
+        public  MenuForm(User user_)
         {
-            filepathQuiz = quiz;
-            if (!Directory.Exists(QuizResultService.QuizzesFolder))
-                Directory.CreateDirectory(QuizManager.QuizzesFolder);
             this.StartPosition = FormStartPosition.CenterScreen;
             this.user = user_;
             InitializeComponent();
@@ -24,8 +19,10 @@ namespace QuizFoms
         private void btnNewQuiz_Click(object sender, EventArgs e)
         {
             this.Hide();
-            var game = new SelectQuizForm(user, filepathQuiz, filePathResult);
-            game.ShowDialog();
+            using (var selectForm = new SelectQuizForm(user))
+            {
+                selectForm.ShowDialog();
+            }
             this.Show();
         }
 
@@ -36,7 +33,18 @@ namespace QuizFoms
             this.Close();
         }
 
-        private void shuffleBtn_Click(object sender, EventArgs e)
+
+        private void settingsBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Top20Btn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void myResBtn_Click(object sender, EventArgs e)
         {
 
         }

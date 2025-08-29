@@ -8,7 +8,6 @@ namespace QuizFoms
     {
         AuthService authService;
         User? ThisUser { get; set; }
-        private string filePathQuiz = Path.Combine(QuizManager.QuizzesFolder, "allQuizzes.json");
         public AuthForm()
         {
             if (!Directory.Exists(QuizManager.QuizzesFolder))
@@ -72,7 +71,7 @@ namespace QuizFoms
         private void enterGame_Click(object sender, EventArgs e)
         {
             this.Hide(); // скрываем текущую форму
-            var game = new MenuForm(ThisUser, filePathQuiz);
+            var game = new MenuForm(ThisUser);
             game.ShowDialog();
             this.Show(); // показываем форму снова после закрытия редактора
             authService.SaveUsers();
@@ -81,7 +80,7 @@ namespace QuizFoms
         private void enter_Edditor_Click(object sender, EventArgs e)
         {
             this.Hide(); // скрываем текущую форму
-            var eddit = new QuizEditMainForm(filePathQuiz);
+            var eddit = new QuizEditMainForm();
             eddit.ShowDialog();
             this.Show(); // показываем форму снова после закрытия редактора
         }

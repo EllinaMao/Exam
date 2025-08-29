@@ -12,8 +12,17 @@ namespace GuessGame
         public static List<Quiz> AllQuizzes { get; private set; } = new List<Quiz>();
 
         // Папка для хранения викторин
-        public static string QuizzesFolder => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Quizzes");
-
+        public static string QuizzesFolder
+        {
+            get
+            {
+                var folder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Quizzes");
+                if (!Directory.Exists(folder))
+                    Directory.CreateDirectory(folder);
+                return folder;
+            }
+        }
+        public static string Filepath => Path.Combine(QuizzesFolder, "AllQuizzes.json");
         public static void AddQuiz(Quiz quiz)
         {
             AllQuizzes.Add(quiz);
@@ -25,8 +34,12 @@ namespace GuessGame
 
         public static void LoadAllFromFile(string filePath)
         {
-            if (!File.Exists(filePath))
-                throw new FileNotFoundException("Файл викторин не найден", filePath);
+            if (!File.Exists(Filepath))
+            {
+                AllQuizzes = new List<Quiz>();
+                SaveAllToFile(filePath);
+                return;
+            }
 
             var json = File.ReadAllText(filePath);
             var quizzes = JsonSerializer.Deserialize<List<Quiz>>(json);

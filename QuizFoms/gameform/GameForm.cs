@@ -6,23 +6,17 @@ namespace QuizFoms
     public partial class GameForm : Form
     {
         private readonly string userLogin;
-        private readonly QuizResultService resultService;
         private Quiz ThisQuiz { get; set; }
         private int currentQuestionIndex = 0;
         private int score = 0;
         private List<Question> questions;
-        private string filePath;
-
-
-        public GameForm(Quiz quiz, string login, QuizResultService service, string filepath)
+        public GameForm(Quiz quiz, string login)
         {
-            
-            ThisQuiz = quiz; 
+
+            ThisQuiz = quiz;
             userLogin = login;
-            resultService = service;
-            this.filePath = filepath;
             this.StartPosition = FormStartPosition.CenterScreen;
-      
+
             InitializeComponent();
 
             var rnd = new Random();
@@ -68,7 +62,7 @@ namespace QuizFoms
             ShowQuestion();
         }
         private void FinishQuiz()
-        {   
+        {
             // Создаём объект результата
             var result = new QuizResult
             {
@@ -79,10 +73,10 @@ namespace QuizFoms
             };
 
             // Сохраняем в сервис
-            resultService.AddResult(userLogin, result);
-            resultService.SaveToFile(filePath);
+            QuizResultService.AddResult(userLogin, result);
+            QuizResultService.SaveToFile(QuizResultService.FilePath);
             // Определяем место игрока в рейтинге
-            int place = resultService.GetPlace(userLogin, result);
+            int place = QuizResultService.GetPlace(userLogin, result);
 
             MessageBox.Show(
            $"Викторина завершена!\n" +
@@ -90,10 +84,9 @@ namespace QuizFoms
             $"Ваше место в рейтинге: {place}",
             "Результат");
 
-            
-
-
             this.Close();
         }
+
+
     }
 }
