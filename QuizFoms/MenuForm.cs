@@ -14,6 +14,8 @@ namespace QuizFoms
             this.user = user_;
             InitializeComponent();
             userGreetinglb.Text = $"Привет {user.Login.ToString()}!";
+            QuizResultService.LoadFromFile(QuizResultService.FilePath);
+            QuizManager.LoadAllFromFile(QuizManager.Filepath);
         }
 
         private void btnNewQuiz_Click(object sender, EventArgs e)
@@ -60,7 +62,13 @@ namespace QuizFoms
 
         private void myResBtn_Click(object sender, EventArgs e)
         {
+            this.Hide();
+            using (var selectForm = new ResultsForm(user))
+            {
+                selectForm.ShowDialog();
 
+            }
+            this.Show();
         }
 
         private void editBtn_Click_1(object sender, EventArgs e)

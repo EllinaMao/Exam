@@ -7,9 +7,6 @@ namespace QuizFoms
     {
         public TopForm()
         {
-            QuizResultService.LoadFromFile(QuizResultService.FilePath);
-            QuizManager.LoadAllFromFile(QuizManager.Filepath);
-
             InitializeComponent();
             var quizTitles = QuizResultService
                 .GetAllResults()
