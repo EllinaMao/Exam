@@ -13,11 +13,9 @@ namespace QuizFoms
 {
     public partial class RegisterForm : Form
     {
-        AuthService authService;
-        public RegisterForm(AuthService authService)
+        public RegisterForm()
         {
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.authService = authService;
             InitializeComponent();
         }
 
@@ -34,7 +32,7 @@ namespace QuizFoms
                 var tpassword = txtPassword.Text;
                 var birthDate = DateOnly.FromDateTime(dateTimeBox.Value);
 
-                authService.Register(login, tpassword, birthDate);
+                AuthService.Register(login, tpassword, birthDate);
 
                 MessageBox.Show("Регистрация прошла успешно!");
                 this.DialogResult = DialogResult.OK; // чтобы можно было проверить результат

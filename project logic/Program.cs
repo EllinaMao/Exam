@@ -16,19 +16,18 @@ namespace login_logic
             Console.WriteLine(admin.GetType());
 
 
-            try
-            {
-            AuthService authService = new();
+            //try
+            //{
 
-            authService.Register("testUser" , "password123" , new DateOnly(1990 , 1 , 1));
-            authService.Register("newUser" , "newPassword" , new DateOnly(1995 , 5 , 15));
-            authService.Register("newUser" , "anotherPassword" , new DateOnly(1995 , 5 , 15)); // This should fail due to existing username
-            authService.Register("newUser2" , "anotherPassword" , new DateOnly(1995 , 5 , 15));
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error during registration: {ex.Message}");
-            }
+            //authService.Register("testUser" , "password123" , new DateOnly(1990 , 1 , 1));
+            //authService.Register("newUser" , "newPassword" , new DateOnly(1995 , 5 , 15));
+            //authService.Register("newUser" , "anotherPassword" , new DateOnly(1995 , 5 , 15)); // This should fail due to existing username
+            //authService.Register("newUser2" , "anotherPassword" , new DateOnly(1995 , 5 , 15));
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine($"Error during registration: {ex.Message}");
+            //}
 
 
         }

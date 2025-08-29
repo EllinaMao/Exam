@@ -26,7 +26,7 @@ namespace login_logic
         [JsonPropertyName("Логин")]
         public string Login { get; private set; }
         [JsonPropertyName("Дата рождения")]
-        public DateOnly DateOfBirth { get; private set; }
+        public DateOnly DateOfBirth { get; set; }
         [JsonPropertyName("Хэш пароля")]
         private string passwordHash;
 
@@ -41,7 +41,7 @@ namespace login_logic
         {
             Login = login;
             DateOfBirth = dateOfBirth;
-            passwordHash = BCrypt.Net.BCrypt.HashPassword(password);
+            ChangePassword(password);
         }
 
         public bool CheckPassword(string password)
@@ -54,6 +54,12 @@ namespace login_logic
         {
             passwordHash = hash;
         }
+
+        public void ChangePassword(string password)
+        {
+            passwordHash = BCrypt.Net.BCrypt.HashPassword(password);
+        }
+
         public string GetPasswordHash()
         {
             return passwordHash;

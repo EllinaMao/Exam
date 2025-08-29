@@ -6,7 +6,6 @@ namespace QuizFoms
 {
     public partial class AuthForm : Form
     {
-        AuthService authService;
         User? ThisUser { get; set; }
         public AuthForm()
         {
@@ -14,8 +13,7 @@ namespace QuizFoms
                 Directory.CreateDirectory(QuizManager.QuizzesFolder);
 
             this.StartPosition = FormStartPosition.CenterScreen;
-            authService = new();
-            authService.LoadUsers();
+            AuthService.LoadUsers();
             InitializeComponent();
         }
 
@@ -23,7 +21,7 @@ namespace QuizFoms
         {
             try
             {
-                ThisUser = authService.Login(login_box.Text, password_box.Text);
+                ThisUser = AuthService.Login(login_box.Text, password_box.Text);
                 if (ThisUser != null)
                 {
                     VisibleMenu(false);
@@ -54,7 +52,7 @@ namespace QuizFoms
         private void register_button_Click(object sender, EventArgs e)
         {
             //тут вызываем отдельную форму которая сама разбирается с ошибками
-            var registerForm = new RegisterForm(authService);
+            var registerForm = new RegisterForm();
             var result = registerForm.ShowDialog();
             if (result == DialogResult.OK)
             {
@@ -74,7 +72,7 @@ namespace QuizFoms
             var game = new MenuForm(ThisUser);
             game.ShowDialog();
             this.Show(); // показываем форму снова после закрытия редактора
-            authService.SaveUsers();
+            AuthService.SaveUsers();
         }
 
         private void enter_Edditor_Click(object sender, EventArgs e)

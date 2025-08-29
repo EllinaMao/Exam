@@ -104,6 +104,7 @@
             editBtn.TabIndex = 22;
             editBtn.Text = "Выход";
             editBtn.UseVisualStyleBackColor = false;
+            editBtn.Click += editBtn_Click_1;
             // 
             // settingsBtn
             // 

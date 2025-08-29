@@ -8,7 +8,7 @@ namespace QuizFoms
     {
         private User? user { get; set; }
 
-        public  MenuForm(User user_)
+        public MenuForm(User user_)
         {
             this.StartPosition = FormStartPosition.CenterScreen;
             this.user = user_;
@@ -27,17 +27,25 @@ namespace QuizFoms
         }
 
 
-        private void editBtn_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Пока!");
-            this.Close();
-        }
-
-
         private void settingsBtn_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            using (var selectForm = new SettingsForm(user))
+            {
+                var result = selectForm.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    AuthService.SaveUsers();
+                    MessageBox.Show("Настройки успешно сохранены!");
+                }
+                else
+                {
+                    MessageBox.Show("Изменения отменены.");
+                }
+            }
+            this.Show();
         }
+
 
         private void Top20Btn_Click(object sender, EventArgs e)
         {
@@ -48,5 +56,13 @@ namespace QuizFoms
         {
 
         }
+
+        private void editBtn_Click_1(object sender, EventArgs e)
+        {
+            MessageBox.Show("Пока!");
+            this.Close();
+        }
+
+
     }
 }

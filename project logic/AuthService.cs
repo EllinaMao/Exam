@@ -1,121 +1,83 @@
 ﻿using login_logic;
 using System.Text.Json;
+
 namespace login_logic
 {
-    public class AuthService
+    public static class AuthService
     {
-        private Dictionary<string, User> users;
-        private const string FilePath = "users.json";
+        private static Dictionary<string, User> users;
+        private static readonly string FilePath = "users.json";
 
-        public AuthService()
+        // Статический конструктор для инициализации при первом обращении
+        static AuthService()
         {
+            users = new Dictionary<string, User>();
             try
             {
                 if (!File.Exists(FilePath))
+                {
+                    // Создаём пустой файл, если его нет
                     File.WriteAllText(FilePath, "[]");
-                users = new Dictionary<string, User>();
+                }
                 LoadUsers();
             }
             catch (Exception ex)
             {
-                throw new InvalidOperationException("Failed to initialize AuthService.", ex);
+                throw new InvalidOperationException("Ошибка инициализации AuthService.", ex);
             }
         }
 
-        // Регистрация обычного пользователя
-        public void Register(string login, string password, DateOnly birthDate)
+        // Регистрация нового пользователя
+        public static void Register(string login, string password, DateOnly birthDate)
         {
             if (users.ContainsKey(login))
-            {
-                throw new ArgumentException($"User with login '{login}' already exists.");
-            }
+                throw new ArgumentException($"Пользователь с логином '{login}' уже существует.");
 
-            users[login] = new RegularUser(login, password, birthDate);
-            try
-            {
-                SaveUsers();
-            }
-            catch (Exception ex)
-            {
-                throw new InvalidOperationException("Failed to save users after registration.", ex);
-            }
+            var user = new RegularUser(login, password, birthDate);
+            users[login] = user;
+            SaveUsers();
         }
 
-        public User Login(string login, string password)
+        // Вход пользователя
+        public static User Login(string login, string password)
         {
             if (!users.TryGetValue(login, out User? user))
-            {
                 throw new InvalidLoginOrPasswordException(login);
-            }
 
             if (!user.CheckPassword(password))
-            {
                 throw new InvalidLoginOrPasswordException(login);
-            }
 
             return user;
         }
 
-        // Сохранение пользователей в JSON
-        public void SaveUsers()
+        // Сохранение всех пользователей в JSON
+        public static void SaveUsers()
         {
-            var jsonUsers = new List<JsonUser>();
-            foreach (var u in users.Values)
+            var jsonUsers = users.Values.Select(u => new JsonUser
             {
-                jsonUsers.Add(new JsonUser
-                {
-                    Login = u.Login,
-                    DateOfBirth = u.DateOfBirth,
-                    PasswordHash = u.GetPasswordHash(),
-                    Type = u.GetType().FullName ?? "login_logic.RegularUser"
-                });
-            }
+                Login = u.Login,
+                DateOfBirth = u.DateOfBirth,
+                PasswordHash = u.GetPasswordHash(),
+                Type = u.GetType().FullName ?? "login_logic.RegularUser"
+            }).ToList();
 
-            var options = new JsonSerializerOptions
-            {
-                WriteIndented = true
-            };
-            try
-            {
-                File.WriteAllText(FilePath, JsonSerializer.Serialize(jsonUsers, options));
-            }
-            catch (Exception ex)
-            {
-                throw new IOException("Error saving users to file.", ex);
-            }
+            var options = new JsonSerializerOptions { WriteIndented = true };
+            File.WriteAllText(FilePath, JsonSerializer.Serialize(jsonUsers, options));
         }
 
         // Загрузка пользователей из JSON
-        public void LoadUsers()
+        public static void LoadUsers()
         {
             if (!File.Exists(FilePath))
-                throw new FileNotFoundException("User data file not found.", FilePath);
+                return;
 
-            string json;
-            try
-            {
-                json = File.ReadAllText(FilePath);
-            }
-            catch (Exception ex)
-            {
-                throw new IOException("Error reading user data file.", ex);
-            }
-
+            string json = File.ReadAllText(FilePath);
             if (string.IsNullOrWhiteSpace(json) || json.Trim() == "[]")
                 return;
 
-            List<JsonUser>? jsonUsers;
-            try
-            {
-                jsonUsers = JsonSerializer.Deserialize<List<JsonUser>>(json);
-            }
-            catch (Exception ex)
-            {
-                throw new JsonException("Error deserializing user data.", ex);
-            }
-
+            var jsonUsers = JsonSerializer.Deserialize<List<JsonUser>>(json);
             if (jsonUsers == null)
-                throw new InvalidOperationException("User data is corrupted or empty.");
+                return;
 
             users.Clear();
             foreach (var j in jsonUsers)
@@ -126,13 +88,13 @@ namespace login_logic
             }
         }
 
-        // Внутренний класс для сериализации
+        // Класс для сериализации пользователей
         private class JsonUser
         {
-            public string Login { get; set; }
+            public string Login { get; set; } = string.Empty;
             public DateOnly DateOfBirth { get; set; }
-            public string PasswordHash { get; set; }
-            public string Type { get; set; }
+            public string PasswordHash { get; set; } = string.Empty;
+            public string Type { get; set; } = "login_logic.RegularUser";
         }
     }
 }
