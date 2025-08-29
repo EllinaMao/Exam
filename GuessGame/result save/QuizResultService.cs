@@ -39,6 +39,7 @@ namespace GuessGame
             return top.FindIndex(r => r.UserLogin == login && r.Date == result.Date) + 1;
         }
 
+        public static List<QuizResult> GetAllResults() => results;
 
         public static List<QuizResult> GetTopResults(string quizTitle , int top = 20) =>
             results
